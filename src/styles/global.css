@@ -5,43 +5,18 @@
 .site-background {
     width: 100%;
     min-height: 100vh;
-    position: relative;
-    overflow: hidden;
+    background-color: #e5e5f7;
+    opacity: 1;
+    background-image: repeating-radial-gradient(
+        circle at 0 0,
+        transparent 0,
+        #e5e5f7 30px
+    ),
+    repeating-linear-gradient(#ffb5b58a, #ffb8b8);
 }
 
 .site-background .drawer-content {
     background-color: transparent;
-    position: relative;
-    z-index: 1;
-}
-
-.site-background > .sidebar,
-.site-background .drawer-side {
-    position: relative;
-    z-index: 1;
-}
-
-/* From Uiverse.io by chase2k25 */
-.cosmic-ripple {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        circle at center,
-        rgba(33, 1, 37, 0.737) 0%,
-        rgb(32, 0, 0) 70%,
-        rgb(0, 0, 0) 100%
-    );
-    filter: url(#ripple-texture);
-    pointer-events: none;
-    z-index: 0;
-}
-
-.cosmic-ripple .texture-filter {
-    position: absolute;
-    width: 0;
-    height: 0;
 }
 
 .btn,

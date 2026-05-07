@@ -25,48 +25,6 @@ const {
   </head>
   <body>
     <div class="site-background drawer lg:drawer-open">
-      <div class="cosmic-ripple" aria-hidden="true">
-        <svg class="texture-filter" aria-hidden="true" focusable="false">
-          <filter id="ripple-texture">
-            <feTurbulence
-              type="turbulence"
-              baseFrequency="0.03"
-              numOctaves="2"
-              result="noise"
-            ></feTurbulence>
-            <feGaussianBlur
-              in="noise"
-              stdDeviation="1.5"
-              result="blur"
-            ></feGaussianBlur>
-            <feDisplacementMap
-              result="displaced"
-              yChannelSelector="G"
-              xChannelSelector="R"
-              scale="20"
-              in2="noise"
-              in="blur"
-            ></feDisplacementMap>
-            <feSpecularLighting
-              in="displaced"
-              surfaceScale="4"
-              specularConstant="1.2"
-              specularExponent="25"
-              lighting-color="#ff33cc"
-              result="specular"
-            >
-              <feDistantLight azimuth="45" elevation="30"></feDistantLight>
-            </feSpecularLighting>
-            <feComposite
-              in="specular"
-              in2="SourceGraphic"
-              operator="over"
-              result="lit"
-            ></feComposite>
-            <feBlend in="SourceGraphic" in2="lit" mode="screen"></feBlend>
-          </filter>
-        </svg>
-      </div>
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
         <Header title={SITE_TITLE} />
