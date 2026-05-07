@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "22.13.0"
-  PNPM_VERSION = "11.0.8"
+  PNPM_VERSION = "10.5.2"
 
 [[headers]]
   for = "/_astro/*"
