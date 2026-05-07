@@ -1,12 +1,10 @@
 [build]
-  command = "pnpm run build"
-  install_command = "npm install -g pnpm@10.5.2 && pnpm install --frozen-lockfile"
+  command = "npm run build"
+  install_command = "npm install"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22.13.0"
-  PNPM_VERSION = "10.5.2"
-  COREPACK_ENABLE = "0"
 
 [[headers]]
   for = "/_astro/*"
