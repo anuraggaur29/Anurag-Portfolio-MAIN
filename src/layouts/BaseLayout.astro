@@ -26,6 +26,9 @@ const {
   </head>
   <body>
     <TargetCursor client:load />
+    <script is:inline>
+      document.addEventListener("contextmenu", (event) => event.preventDefault());
+    </script>
     <div class="site-background drawer lg:drawer-open">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
