@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
+import TargetCursor from "../components/TargetCursor.jsx";
 import { ViewTransitions } from "astro:transitions";
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
@@ -24,6 +25,7 @@ const {
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
+    <TargetCursor client:load />
     <div class="site-background drawer lg:drawer-open">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
