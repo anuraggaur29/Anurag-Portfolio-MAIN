@@ -5,28 +5,41 @@
 .site-background {
     width: 100%;
     min-height: 100vh;
-    background-color: #e5e5f7;
-    opacity: 1;
-    background-image: repeating-radial-gradient(
-        circle at 0 0,
-        transparent 0,
-        #e5e5f7 30px
-    ),
-    repeating-linear-gradient(#ffb5b58a, #ffb8b8);
+    position: relative;
+    background-color: #05070b;
+    color: #ffffff;
 }
 
 .site-background .drawer-content {
     background-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.site-background .drawer-side {
+    position: relative;
+    z-index: 1;
+}
+
+.site-background__effect {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.site-background a {
+    color: inherit;
 }
 
 .btn,
 .btn-outline,
 .btn-ghost {
-    background-color: #fbeee0;
-    border: 2px solid #422800;
+    background-color: rgba(5, 7, 11, 0.55);
+    border: 2px solid #ffffff;
     border-radius: 30px;
-    box-shadow: #422800 4px 4px 0 0;
-    color: #422800;
+    box-shadow: #ffffff 4px 4px 0 0;
+    color: #ffffff;
     cursor: pointer;
     display: inline-block;
     font-weight: 600;
@@ -43,14 +56,14 @@
 .btn:hover,
 .btn-outline:hover,
 .btn-ghost:hover {
-    background-color: #ffffff;
-    color: #422800;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
 }
 
 .btn:active,
 .btn-outline:active,
 .btn-ghost:active {
-    box-shadow: #422800 2px 2px 0 0;
+    box-shadow: #ffffff 2px 2px 0 0;
     transform: translate(2px, 2px);
 }
 

@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
+import DotGrid from "../components/DotGrid.jsx";
 import TargetCursor from "../components/TargetCursor.jsx";
 import { ViewTransitions } from "astro:transitions";
 
@@ -30,6 +31,20 @@ const {
       document.addEventListener("contextmenu", (event) => event.preventDefault());
     </script>
     <div class="site-background drawer lg:drawer-open">
+      <div class="site-background__effect" aria-hidden="true">
+        <DotGrid
+          client:load
+          dotSize={10}
+          gap={18}
+          baseColor="#1b2a3c"
+          activeColor="#6ed4ff"
+          proximity={140}
+          shockRadius={220}
+          shockStrength={4}
+          resistance={700}
+          returnDuration={1.4}
+        />
+      </div>
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
         <Header title={SITE_TITLE} />
