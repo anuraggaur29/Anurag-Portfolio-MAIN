@@ -1,0 +1,65 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<div class="flex flex-row items-center justify-between sm:justify-between py-8 max-w-5xl mx-auto relative z-[100] px-8">
+  <!-- Desktop Nav -->
+  <div class="hidden lg:flex w-full justify-between">
+    <nav class="navbar-pill">
+      <a class="font-bold text-sm flex items-center justify-center text-white space-x-2" href="/">
+        <img
+          alt="Anurag"
+          width="30"
+          height="30"
+          class="rounded-full"
+          src="/anurag-photo.jpg"
+        />
+        <span class="font-bold">Anurag</span>
+      </a>
+      <a class="nav-link" href="/about">
+        <span class="relative z-10 px-2 py-2 inline-block">About</span>
+      </a>
+      <a class="nav-link" href="/projects">
+        <span class="relative z-10 px-2 py-2 inline-block">Projects</span>
+      </a>
+      <a class="nav-link" href="https://linkedin.com/in/anuraggaur29" target="_blank">
+        <span class="relative z-10 px-2 py-2 inline-block">LinkedIn</span>
+      </a>
+      <a class="nav-link" href="https://github.com/anuraggaur29" target="_blank">
+        <span class="relative z-10 px-2 py-2 inline-block">GitHub</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div class="flex lg:hidden w-full">
+    <div class="flex flex-row justify-between items-center w-full">
+      <a class="font-bold text-sm flex items-center justify-center text-white space-x-2" href="/">
+        <img
+          alt="Anurag"
+          width="30"
+          height="30"
+          class="rounded-full"
+          src="/anurag-photo.jpg"
+        />
+        <span class="font-bold text-zinc-100">Anurag</span>
+      </a>
+      <button id="mobile-menu-btn" class="text-zinc-100 p-2" aria-label="Open menu">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1.25em" width="1.25em" xmlns="http://www.w3.org/2000/svg">
+          <path d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="mobile-menu-overlay">
+  <button id="mobile-menu-close" class="absolute top-8 right-8 text-white text-2xl" aria-label="Close menu">&times;</button>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/projects">Projects</a>
+  <a href="https://linkedin.com/in/anuraggaur29" target="_blank">LinkedIn</a>
+  <a href="https://github.com/anuraggaur29" target="_blank">GitHub</a>
+  <a href="https://wa.me/917988019566" target="_blank">Contact</a>
+</div>

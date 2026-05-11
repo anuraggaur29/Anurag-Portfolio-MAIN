@@ -1,58 +1,294 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
-import { highlightTextParts } from "../lib/highlightText";
 
-const intro =
-  "CS (AI/ML) student at Chandigarh University with an 8.1 CGPA, building full-stack web apps, ML models, and tools that solve real problems. Top 50 at Graph-E-Thon 3.0 among 10,000+ teams, open to SWE, ML, and AI Engineer roles.";
+const experiences = [
+  {
+    id: "webstack",
+    label: "Webstack Academy",
+    icon: "WA",
+    role: "Full Stack Web Development Intern",
+    period: "Mar 2026 - Apr 2026",
+    location: "Remote",
+    points: [
+      "Delivered 3+ full-stack features using React.js, Node.js, Express.js, and MongoDB",
+      "Covered UI components, REST APIs, and database integration within a 2-month sprint cycle",
+    ],
+  },
+  {
+    id: "cr",
+    label: "Class Rep",
+    icon: "CR",
+    role: "Academic Class Representative",
+    period: "Jan 2025 - Present",
+    location: "Chandigarh University",
+    points: [
+      "Represented 60+ students across 3 consecutive semesters",
+      "Tracked issues, resolved conflicts, and liaised with faculty under competing deadlines",
+    ],
+  },
+  {
+    id: "gfg",
+    label: "GFG Chapter",
+    icon: "GF",
+    role: "Member",
+    period: "Apr 2025 - Feb 2026",
+    location: "Chandigarh University",
+    points: [
+      "Contributed to peer learning and programming initiatives",
+      "Participated in problem-solving sessions as part of the campus body",
+    ],
+  },
+  {
+    id: "gdsc",
+    label: "GDSC",
+    icon: "GD",
+    role: "Member",
+    period: "Mar 2025 - Feb 2026",
+    location: "Chandigarh University",
+    points: [
+      "Collaborated on developer community activities",
+      "Focused on front-end development, C++, and project building",
+    ],
+  },
+];
+
+const projects = [
+  {
+    title: "Lecture AI",
+    img: "/project-images/lecture-capture-project-img.png",
+    desc: "AI-powered lecture-to-notes app using React, FastAPI, SQLite, and Python. Converts uploaded content into structured, searchable notes.",
+    url: "https://lecturecapture-ai.netlify.app/",
+    badge: "AI",
+  },
+  {
+    title: "News Classifier + Telegram Bot",
+    img: "/project-images/news-classify-project-img.png",
+    desc: "Fake-news detection pipeline using TF-IDF, Naive Bayes, and Logistic Regression, deployed via Telegram bot.",
+    badge: "ML",
+  },
+  {
+    title: "Web-based Money Tracker",
+    img: "/project-images/money-tracker-img.png",
+    desc: "Full-stack finance tracker with SQL-backed CRUD, multi-category analytics, and separated frontend/API/DB layers.",
+    badge: "FULL STACK",
+  },
+  {
+    title: "RookHide",
+    img: "/project-images/rookhide-img.png",
+    desc: "Steganography tool that hides encrypted data inside Chess PGN files using Rust, PyO3, and AES-256.",
+    badge: "RUST",
+  },
+];
+
+const skillGroups = [
+  { label: "Languages", items: ["C", "C++", "Python", "JavaScript", "SQL", "Rust"] },
+  { label: "Frontend & Backend", items: ["React.js", "Node.js", "Express.js", "FastAPI", "REST APIs", "HTML/CSS"] },
+  { label: "Databases", items: ["MongoDB", "MySQL", "SQLite", "BigQuery", "Cloud SQL"] },
+  { label: "ML & AI", items: ["Scikit-learn", "TensorFlow", "NumPy", "Pandas", "NLP", "Prompt Engineering"] },
+  { label: "Cloud & Tools", items: ["Microsoft Azure", "GCP", "Git", "GitHub", "Postman", "Linux/Unix"] },
+];
 ---
 
-<BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hello</div>
-    <div class="text-5xl font-bold">I'm Anurag</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer / SDE | Product Engineer | Full Stack + ML</div>
-    <div class="py-2">
-      <text class="text-lg">
-        {highlightTextParts(intro).map((part) =>
-          part.kind ? <span class={`focus-${part.kind}`}>{part.text}</span> : part.text
-        )}
-      </text>
+<BaseLayout>
+  <!-- ===== HERO SECTION ===== -->
+  <div class="block relative lg:flex max-w-5xl mx-auto mt-10 md:mt-20 px-8">
+    <div class="flex-1">
+      <h1 class="font-bold text-3xl md:text-5xl leading-tight text-zinc-50 max-w-3xl">
+        Trust me, I'm a <span class="hero-gradient-text">software engineer.</span>
+      </h1>
+      <p class="text-zinc-400 text-sm md:text-base max-w-2xl mt-8 leading-loose tracking-wide">
+        Meet Anurag, a CS (AI/ML) student at Chandigarh University with an 8.1 CGPA, building full-stack web apps, ML models, and tools that solve real problems. Top 50 at Graph-E-Thon 3.0 among 10,000+ teams.
+      </p>
+      <p class="text-zinc-600 text-sm mt-2">~ Portfolio</p>
+
+      <div class="mt-8 text-zinc-400 text-sm md:text-base max-w-2xl leading-loose tracking-wide">
+        Open to <a class="text-zinc-200 font-bold hover:text-cyan-500 transition duration-150" href="/about">SWE, ML, and AI Engineer</a> roles ✨
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a target="_blank" class="whatsapp-btn" href="https://wa.me/917988019566">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-5 w-5">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          <span>Contact Me</span>
+        </a>
+        <a class="cta-btn" href="/Anurag_Resume_Main.pdf" download>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span>Download Resume</span>
+        </a>
+      </div>
     </div>
-    <div class="mt-8">
-      <a class="btn cursor-target" href="mailto:anuragshakalya@gmail.com" target="_blank">Email</a>
-      <a class="btn btn-outline ml-5 cursor-target" href="/Anurag_Resume_Main.pdf" download>Download Resume</a>
-      <a href="https://linkedin.com/in/anuraggaur29" target="_blank" class="btn btn-outline ml-5 cursor-target">
-        Connect on LinkedIn
-      </a>
+
+    <div class="mt-8 lg:mt-0 lg:ml-10 flex-shrink-0">
+      <img
+        alt="Anurag"
+        width="500"
+        height="500"
+        class="hero-avatar w-full max-w-[320px] lg:max-w-[400px] mx-auto"
+        src="/anurag-photo.jpg"
+      />
+      <div class="flex flex-row justify-start md:justify-center space-x-1 mt-3">
+        <a href="https://linkedin.com/in/anuraggaur29" class="social-icon" target="_blank" aria-label="LinkedIn">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg"><path d="M847.7 112H176.3c-35.5 0-64.3 28.8-64.3 64.3v671.4c0 35.5 28.8 64.3 64.3 64.3h671.4c35.5 0 64.3-28.8 64.3-64.3V176.3c0-35.5-28.8-64.3-64.3-64.3zm0 736c-447.8-.1-671.7-.2-671.7-.3.1-447.8.2-671.7.3-671.7 447.8.1 671.7.2 671.7.3-.1 447.8-.2 671.7-.3 671.7zM230.6 411.9h118.7v381.8H230.6zm59.4-52.2c37.9 0 68.8-30.8 68.8-68.8a68.8 68.8 0 1 0-137.6 0c-.1 38 30.7 68.8 68.8 68.8zm252.3 245.1c0-49.8 9.5-98 71.2-98 60.8 0 61.7 56.9 61.7 101.2v185.7h118.6V584.3c0-102.8-22.2-181.9-142.3-181.9-57.7 0-96.4 31.7-112.3 61.7h-1.6v-52.2H423.7v381.8h118.6V604.8z"></path></svg>
+        </a>
+        <a href="https://github.com/anuraggaur29" class="social-icon" target="_blank" aria-label="GitHub">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg"><path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0 1 38.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z"></path></svg>
+        </a>
+        <a href="https://wa.me/917988019566" class="social-icon" target="_blank" aria-label="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-5 w-5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <a href="https://leetcode.com/u/anuragshakalya/" class="social-icon" target="_blank" aria-label="LeetCode">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-5 w-5"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">Featured projects {"</>"}</div>
+  <!-- ===== WORK EXPERIENCE ===== -->
+  <div class="max-w-5xl mx-auto px-8">
+    <h2 class="text-2xl md:text-3xl text-white font-bold mt-20 md:mt-40">Work Experience</h2>
+    <p class="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide">
+      Building skills through internships, leadership, and community involvement.
+    </p>
+
+    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-2 mt-16 max-w-3xl mx-auto" id="exp-container">
+      <!-- Left: Tabs -->
+      <div class="flex flex-row md:flex-col relative overflow-x-auto md:overflow-x-visible">
+        <div class="hidden md:block absolute -left-6 w-px h-full bg-zinc-800 overflow-hidden">
+          <div class="meteor-line"></div>
+        </div>
+        {experiences.map((exp, i) => (
+          <div class="relative my-2">
+            <button
+              class={`exp-tab ${i === 0 ? 'active' : ''}`}
+              data-exp-id={exp.id}
+              onclick={`
+                document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.exp-detail').forEach(d => d.style.display = 'none');
+                document.getElementById('detail-${exp.id}').style.display = 'block';
+              `}
+            >
+              <div class="exp-tab-icon">{exp.icon}</div>
+              <span>{exp.label}</span>
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <!-- Right: Details -->
+      <div class="md:pl-10 flex-1">
+        {experiences.map((exp, i) => (
+          <div
+            id={`detail-${exp.id}`}
+            class="exp-detail flex flex-col space-y-2 fade-in"
+            style={i === 0 ? '' : 'display:none'}
+          >
+            <h3 class="text-2xl font-bold text-zinc-100">
+              {exp.role} <span class="text-cyan-500">@{exp.label}</span>
+            </h3>
+            <div class="text-zinc-400 text-sm tracking-widest">{exp.period}</div>
+            <p class="text-zinc-400 text-sm">{exp.location}</p>
+            <div class="mt-2">
+              {exp.points.map((point) => (
+                <div class="check-item">
+                  <svg class="check-icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+                  </svg>
+                  <span class="text-zinc-400 text-sm">{point}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 
-  <HorizontalCard
-    title="Lecture AI"
-    img="/project-images/lecture-capture-project-img.png"
-    desc="Built an AI-powered lecture-to-notes web app with React, FastAPI, SQLite, and Python, converting uploaded content into structured searchable notes."
-    url="https://lecturecapture-ai.netlify.app/"
-    badge="AI"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="News Authenticity Classifier + Telegram Bot"
-    img="/project-images/news-classify-project-img.png"
-    desc="Trained and benchmarked 3 classifiers using TF-IDF, Naive Bayes, and Logistic Regression, then deployed the best model behind a Telegram bot."
-    url="/projects"
-    badge="ML"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Web-based Money Tracker"
-    img="/project-images/money-tracker-img.png"
-    desc="Full-stack finance app with SQL-backed CRUD, multi-category analytics, savings dashboards, and separated frontend, API, and DB layers."
-    url="/projects"
-    badge="FULL STACK"
-  />
+  <!-- ===== PROJECTS ===== -->
+  <div class="max-w-5xl mx-auto px-8">
+    <h2 class="text-2xl md:text-3xl text-white font-bold mt-20 md:mt-40">Projects</h2>
+    <p class="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide">
+      A selection of things I've built — from AI apps to full-stack tools.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
+      {projects.map((project) => (
+        <a
+          href={project.url || "/projects"}
+          target={project.url?.startsWith("http") ? "_blank" : "_self"}
+          class="relative group block p-2"
+        >
+          <div class="project-card">
+            <div class="project-card-img">
+              <img alt={project.title} loading="lazy" src={project.img} />
+            </div>
+            <div class="p-4">
+              <div class="flex items-center gap-2 mt-2">
+                <span class="text-xs font-semibold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded">{project.badge}</span>
+              </div>
+              <h4 class="text-zinc-100 font-bold tracking-wide mt-2">{project.title}</h4>
+              <p class="mt-2 text-zinc-400 tracking-wide leading-relaxed text-sm">{project.desc}</p>
+              <div class="flex flex-row space-x-2 mt-4 items-center">
+                <svg class="h-3 w-3 text-zinc-500 group-hover:text-cyan-500" stroke="currentColor" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"></path>
+                  <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"></path>
+                </svg>
+                <p class="text-zinc-500 group-hover:text-cyan-500 text-xs">View Project</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- ===== SKILLS & EDUCATION ===== -->
+  <div class="max-w-5xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20 md:mt-40">
+    <div class="col-span-2">
+      <h2 class="text-2xl md:text-3xl text-white font-bold">Skills & Technologies</h2>
+      <p class="text-zinc-400 text-sm max-w-2xl mt-4 leading-loose tracking-wide">
+        Tools, languages, and frameworks I work with daily.
+      </p>
+      <div class="mt-8 space-y-6">
+        {skillGroups.map((group) => (
+          <div>
+            <h4 class="text-sm font-semibold text-zinc-300 mb-3">{group.label}</h4>
+            <div class="flex flex-wrap gap-2">
+              {group.items.map((skill) => (
+                <span class="skill-badge">{skill}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div>
+      <h3 class="font-bold text-zinc-50 mb-2 text-xl">Education</h3>
+      <div class="my-6">
+        <h4 class="text-base font-bold text-zinc-100">B.E. CSE - AI & ML</h4>
+        <p class="text-sm text-zinc-500 mt-1">Chandigarh University | 2023 - 2027</p>
+        <p class="text-sm text-zinc-400 leading-loose mt-1">CGPA: 8.1 — Specialization in Artificial Intelligence & Machine Learning.</p>
+      </div>
+      <div class="my-6">
+        <h4 class="text-base font-bold text-zinc-100">Class XII, Non-Medical</h4>
+        <p class="text-sm text-zinc-500 mt-1">Hari Bhoomi Sr. Sec. School</p>
+        <p class="text-sm text-zinc-400 leading-loose mt-1">Score: 84%</p>
+      </div>
+      <div class="my-6">
+        <h4 class="text-base font-bold text-zinc-100">Class X, ICSE</h4>
+        <p class="text-sm text-zinc-500 mt-1">Shri Lajja Ram B.D. Gurukul Vidyapeeth</p>
+        <p class="text-sm text-zinc-400 leading-loose mt-1">Score: 88%</p>
+      </div>
+
+      <h3 class="font-bold text-zinc-50 mb-2 text-xl mt-10">Achievements</h3>
+      <div class="my-6">
+        <h4 class="text-base font-bold text-zinc-100 group-hover:text-blue-400">🏆 Graph-E-Thon 3.0</h4>
+        <p class="text-sm text-zinc-400 leading-loose">Top 50 out of 10,000+ teams in a national hackathon — rapid prototyping & teamwork.</p>
+      </div>
+    </div>
+  </div>
 </BaseLayout>

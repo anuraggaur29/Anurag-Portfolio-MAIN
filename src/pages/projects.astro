@@ -1,45 +1,83 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Project3DCard from "../components/Project3DCard";
 
 const projects = [
-  {
-    title: "News Authenticity Classifier + Telegram Bot",
-    img: "/project-images/news-classify-project-img.png",
-    desc: "Fake-news detection pipeline in Python and Scikit-learn. Benchmarked 3 classifiers with TF-IDF, Naive Bayes, and Logistic Regression, selected by F1-score, and deployed through a Telegram bot.",
-    url: "/projects",
-    badge: "ML",
-  },
   {
     title: "Lecture AI",
     img: "/project-images/lecture-capture-project-img.png",
     desc: "AI-powered lecture-to-notes app using React, FastAPI, SQLite, and Python. Processes uploaded content into structured, searchable notes with modular REST API service layers.",
     url: "https://lecturecapture-ai.netlify.app/",
     badge: "AI",
+    techs: ["React", "FastAPI", "Python", "SQLite"],
+  },
+  {
+    title: "News Authenticity Classifier + Telegram Bot",
+    img: "/project-images/news-classify-project-img.png",
+    desc: "Fake-news detection pipeline in Python and Scikit-learn. Benchmarked 3 classifiers with TF-IDF, Naive Bayes, and Logistic Regression, selected by F1-score, and deployed through a Telegram bot.",
+    badge: "ML",
+    techs: ["Python", "Scikit-learn", "NLP", "Telegram API"],
   },
   {
     title: "Web-based Money Tracker",
     img: "/project-images/money-tracker-img.png",
     desc: "Full-stack finance tracker with SQL-backed CRUD, multi-category spending analytics, savings dashboards, and separated frontend, API, and database layers.",
-    url: "/projects",
     badge: "FULL STACK",
+    techs: ["JavaScript", "SQL", "REST API", "HTML/CSS"],
   },
   {
     title: "RookHide",
     img: "/project-images/rookhide-img.png",
     desc: "Steganography side project that hides encrypted data inside Chess PGN files, built around Rust, PyO3, and AES-256 concepts.",
-    url: "/projects",
     badge: "RUST",
+    techs: ["Rust", "PyO3", "AES-256", "Chess PGN"],
   },
 ];
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects</div>
+<BaseLayout title="Projects - Anurag">
+  <div class="max-w-5xl mx-auto px-8 mt-10 md:mt-20">
+    <h1 class="font-bold text-3xl md:text-5xl leading-tight text-zinc-50">
+      My <span class="hero-gradient-text">Projects</span>
+    </h1>
+    <p class="text-zinc-400 text-sm md:text-base max-w-2xl mt-4 leading-loose tracking-wide">
+      A collection of projects I've built — from AI-powered apps to full-stack web tools and systems programming.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
+      {projects.map((project) => (
+        <a
+          href={project.url || "#"}
+          target={project.url?.startsWith("http") ? "_blank" : "_self"}
+          class="relative group block p-2"
+        >
+          <div class="project-card">
+            <div class="project-card-img">
+              <img alt={project.title} loading="lazy" src={project.img} />
+            </div>
+            <div class="p-4">
+              <div class="flex items-center gap-2 mt-2">
+                <span class="text-xs font-semibold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded">{project.badge}</span>
+              </div>
+              <h4 class="text-zinc-100 font-bold tracking-wide mt-2">{project.title}</h4>
+              <p class="mt-2 text-zinc-400 tracking-wide leading-relaxed text-sm">{project.desc}</p>
+              <div class="flex flex-wrap gap-1.5 mt-4">
+                {project.techs.map((tech) => (
+                  <span class="text-xs text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">{tech}</span>
+                ))}
+              </div>
+              <div class="flex flex-row space-x-2 mt-4 items-center">
+                <svg class="h-3 w-3 text-zinc-500 group-hover:text-cyan-500" stroke="currentColor" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"></path>
+                  <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"></path>
+                </svg>
+                <p class="text-zinc-500 group-hover:text-cyan-500 text-xs">View Project</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
   </div>
 
-  <div class="grid gap-6 md:grid-cols-2">
-    {projects.map((project) => <Project3DCard client:load {...project} />)}
-  </div>
+  <div class="mb-20"></div>
 </BaseLayout>

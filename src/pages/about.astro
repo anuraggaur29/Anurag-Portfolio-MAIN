@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const certifications = [
+  "AWS Academy - Generative AI Foundations (Apr 2026)",
+  "Microsoft Certified: Azure Fundamentals / AI-900 (Jun 2025)",
+  "GitHub Foundations - CI/CD, DevOps, GitHub Actions (Jun 2025 - Jun 2028)",
+  "IBM - Generative AI for Data Engineers",
+  "Apna College - Full Stack Web Development (MERN)",
+  "Google Cloud - Introduction to SQL for BigQuery and Cloud SQL (May 2026)",
+  "NVIDIA - Fundamentals of Deep Learning",
+  "Duke University - Introduction to Machine Learning (Feb 2025)",
+  "Intel India - AI for Entrepreneurship (Mar 2025)",
+];
+---
+
+<BaseLayout title="About - Anurag">
+  <div class="max-w-5xl mx-auto px-8 mt-10 md:mt-20">
+    <h1 class="font-bold text-3xl md:text-5xl leading-tight text-zinc-50">
+      About <span class="hero-gradient-text">Me</span>
+    </h1>
+
+    <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div class="col-span-2">
+        <p class="text-zinc-400 text-sm md:text-base leading-loose tracking-wide">
+          I'm Anurag — a CS (AI/ML) student at Chandigarh University, full-stack developer, and problem solver.
+          I build web apps, ML models, and tools that actually solve problems, with hands-on work across MERN,
+          FastAPI, SQL databases, cloud, and generative AI.
+        </p>
+        <p class="text-zinc-400 text-sm md:text-base leading-loose tracking-wide mt-4">
+          I'm currently in my final year of B.E. Computer Science Engineering with a specialization in
+          Artificial Intelligence & Machine Learning, maintaining an 8.1 CGPA. I'm open to SWE, ML,
+          and AI Engineer roles where I can contribute and grow.
+        </p>
+
+        <h2 class="text-2xl font-bold text-zinc-50 mt-16">Certifications</h2>
+        <p class="text-zinc-400 text-sm mt-2 mb-6">Industry certifications that validate my skills.</p>
+        <div class="space-y-3">
+          {certifications.map((cert) => (
+            <div class="cert-item">
+              <svg class="cert-bullet h-4 w-4 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+              </svg>
+              <span class="text-zinc-400 text-sm">{cert}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <img
+          alt="Anurag"
+          class="hero-avatar w-full max-w-[280px] mx-auto"
+          src="/anurag-photo.jpg"
+        />
+        <div class="mt-8 space-y-4">
+          <div>
+            <h4 class="text-zinc-500 text-xs uppercase tracking-widest">Email</h4>
+            <a href="mailto:anuragshakalya@gmail.com" class="text-zinc-200 text-sm hover:text-cyan-500 transition">anuragshakalya@gmail.com</a>
+          </div>
+          <div>
+            <h4 class="text-zinc-500 text-xs uppercase tracking-widest">Location</h4>
+            <p class="text-zinc-200 text-sm">Chandigarh, India</p>
+          </div>
+          <div>
+            <h4 class="text-zinc-500 text-xs uppercase tracking-widest">University</h4>
+            <p class="text-zinc-200 text-sm">Chandigarh University</p>
+          </div>
+          <div class="pt-4">
+            <a class="cta-btn w-full justify-center" href="/Anurag_Resume_Main.pdf" download>
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-20"></div>
+</BaseLayout>
