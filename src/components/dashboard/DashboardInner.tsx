@@ -30,12 +30,14 @@ export default function DashboardInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [currentDate, setCurrentDate] = useState("");
+  const [username, setUsername] = useState("");
   const [passcode, setPasscode] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState("");
   const [isShaking, setIsShaking] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  const correctUsername = process.env.NEXT_PUBLIC_DASHBOARD_USERNAME || "anuragshakalaya";
   const correctPasscode = process.env.NEXT_PUBLIC_DASHBOARD_PASSCODE || "anuraggaur001";
 
   // Tab state synced with URL query param ?tab=
@@ -57,11 +59,12 @@ export default function DashboardInner() {
     setCurrentDate(formatted);
 
     // Check passcode auth
-    const saved = localStorage.getItem("dashboard_passcode");
-    if (saved === correctPasscode) {
+    const savedUser = localStorage.getItem("dashboard_user");
+    const savedPass = localStorage.getItem("dashboard_passcode");
+    if (savedUser === correctUsername && savedPass === correctPasscode) {
       setIsAuthenticated(true);
     }
-  }, [correctPasscode]);
+  }, [correctUsername, correctPasscode]);
 
   const handleTabChange = (tabId: TabId) => {
     router.push(`?tab=${tabId}`);
@@ -69,12 +72,13 @@ export default function DashboardInner() {
 
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passcode === correctPasscode) {
+    if (username === correctUsername && passcode === correctPasscode) {
+      localStorage.setItem("dashboard_user", username);
       localStorage.setItem("dashboard_passcode", passcode);
       setIsAuthenticated(true);
       setError("");
     } else {
-      setError("Incorrect passcode. Access denied.");
+      setError("Invalid username or password.");
       setIsShaking(true);
       setTimeout(() => setIsShaking(false), 500);
     }
@@ -142,24 +146,38 @@ export default function DashboardInner() {
 
           <h2 className="text-lg font-bold text-white tracking-tight">Protected Dashboard</h2>
           <p className="text-xs text-text-secondary mt-1.5 leading-relaxed">
-            Authorized access only. Enter passcode to view placement metrics and trackers.
+            Authorized access only. Enter your credentials to manage the placement prep logs.
           </p>
 
           <form onSubmit={handleUnlock} className="mt-6 space-y-4">
-            <div>
+            <div className="space-y-3">
+              <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  if (error) setError("");
+                }}
+                className={`w-full bg-surface-2 border rounded-btn px-4 py-2.5 text-sm text-white placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all ${
+                  error ? "border-rose-500" : "border-border"
+                }`}
+                autoFocus
+              />
+
               <input
                 type="password"
-                placeholder="Enter passcode"
+                placeholder="Password"
                 value={passcode}
                 onChange={(e) => {
                   setPasscode(e.target.value);
                   if (error) setError("");
                 }}
-                className={`w-full bg-surface-2 border rounded-btn px-4 py-2.5 text-center text-sm font-semibold tracking-[0.2em] text-white placeholder:text-text-muted placeholder:tracking-normal focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all ${
+                className={`w-full bg-surface-2 border rounded-btn px-4 py-2.5 text-sm text-white placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all ${
                   error ? "border-rose-500" : "border-border"
                 }`}
-                autoFocus
               />
+
               {error && (
                 <p className="text-rose-400 text-[11px] mt-2 font-medium select-none">
                   {error}
@@ -171,7 +189,7 @@ export default function DashboardInner() {
               type="submit"
               className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white text-sm font-semibold rounded-btn transition-colors duration-200 hover:bg-accent-hover active:scale-[0.98] focus:outline-none"
             >
-              Unlock
+              Login
             </button>
           </form>
         </motion.div>
@@ -198,12 +216,26 @@ export default function DashboardInner() {
           </p>
         </div>
 
-        {/* Dynamic Date */}
-        {currentDate && (
-          <div className="text-xs sm:text-sm text-text-muted font-mono bg-surface-1 border border-border px-3.5 py-2 rounded-btn select-none">
-            {currentDate}
-          </div>
-        )}
+        {/* Dynamic Date & Sign Out */}
+        <div className="flex items-center gap-3 self-stretch md:self-auto justify-between md:justify-start">
+          {currentDate && (
+            <div className="text-xs sm:text-sm text-text-muted font-mono bg-surface-1 border border-border px-3.5 py-2 rounded-btn select-none">
+              {currentDate}
+            </div>
+          )}
+          <button
+            onClick={() => {
+              localStorage.removeItem("dashboard_user");
+              localStorage.removeItem("dashboard_passcode");
+              setIsAuthenticated(false);
+              setUsername("");
+              setPasscode("");
+            }}
+            className="text-xs font-semibold text-text-secondary bg-surface-1 border border-border hover:bg-surface-2 hover:text-white px-3.5 py-2.5 rounded-btn transition-colors duration-200 focus:outline-none"
+          >
+            Sign Out
+          </button>
+        </div>
       </div>
 
       {/* Navigation Tabs Header */}
