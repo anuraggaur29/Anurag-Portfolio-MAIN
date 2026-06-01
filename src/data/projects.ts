@@ -5,6 +5,8 @@ export interface Project {
   github?: string;
   live?: string;
   featured?: boolean;
+  img?: string;
+  badge?: string;
 }
 
 export const projects: Project[] = [
@@ -16,6 +18,8 @@ export const projects: Project[] = [
     github: "https://github.com/anuraggaur29",
     live: "https://noteifyplus.vercel.app",
     featured: true,
+    img: "/project-images/lecture-capture-project-img.png",
+    badge: "FULL STACK",
   },
   {
     title: "RookHide",
@@ -24,6 +28,8 @@ export const projects: Project[] = [
     tech: ["Rust", "Python", "PyO3", "AES-256"],
     github: "https://github.com/anuraggaur29",
     featured: true,
+    img: "/project-images/rookhide-img.png",
+    badge: "RUST",
   },
   {
     title: "Lecture AI",
@@ -32,6 +38,8 @@ export const projects: Project[] = [
     tech: ["Python", "FastAPI", "SQLite", "React"],
     github: "https://github.com/anuraggaur29",
     live: "https://lecturecapture-ai.netlify.app/",
+    img: "/project-images/lecture-capture-project-img.png",
+    badge: "AI",
   },
   {
     title: "News Authenticity Classifier",
@@ -39,6 +47,8 @@ export const projects: Project[] = [
       "Fake-news detection pipeline using TF-IDF, Naive Bayes, and Logistic Regression, deployed via Telegram bot.",
     tech: ["Python", "Scikit-learn", "NLP"],
     github: "https://github.com/anuraggaur29",
+    img: "/project-images/news-classify-project-img.png",
+    badge: "ML",
   },
   {
     title: "Web Money Tracker",
@@ -46,5 +56,7 @@ export const projects: Project[] = [
       "Full-stack finance tracker with SQL-backed CRUD, multi-category analytics, and separated frontend/API/DB layers.",
     tech: ["React", "Node.js", "Express", "MongoDB"],
     github: "https://github.com/anuraggaur29",
+    img: "/project-images/money-tracker-img.png",
+    badge: "FULL STACK",
   },
 ];
