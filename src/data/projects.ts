@@ -20,29 +20,30 @@ export const projects: Project[] = [
   {
     title: "RookHide",
     description:
-      "Steganography engine using chess PGN data + AES-256 encryption.",
-    tech: ["Rust", "Python", "PyO3"],
+      "Steganography engine that hides encrypted data inside Chess PGN files using Rust, PyO3, and AES-256.",
+    tech: ["Rust", "Python", "PyO3", "AES-256"],
     github: "https://github.com/anuraggaur29",
     featured: true,
   },
   {
     title: "Lecture AI",
     description:
-      "FastAPI backend that converts lecture files into structured searchable notes.",
-    tech: ["Python", "FastAPI", "SQLite"],
+      "AI-powered lecture-to-notes app using React, FastAPI, SQLite, and Python. Converts uploaded content into structured, searchable notes.",
+    tech: ["Python", "FastAPI", "SQLite", "React"],
     github: "https://github.com/anuraggaur29",
+    live: "https://lecturecapture-ai.netlify.app/",
   },
   {
     title: "News Authenticity Classifier",
     description:
-      "End-to-end NLP pipeline with REST API + Telegram bot.",
+      "Fake-news detection pipeline using TF-IDF, Naive Bayes, and Logistic Regression, deployed via Telegram bot.",
     tech: ["Python", "Scikit-learn", "NLP"],
     github: "https://github.com/anuraggaur29",
   },
   {
     title: "Web Money Tracker",
     description:
-      "Full-stack finance app with SQL/MongoDB data layer.",
+      "Full-stack finance tracker with SQL-backed CRUD, multi-category analytics, and separated frontend/API/DB layers.",
     tech: ["React", "Node.js", "Express", "MongoDB"],
     github: "https://github.com/anuraggaur29",
   },

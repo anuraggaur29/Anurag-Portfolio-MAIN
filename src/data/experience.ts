@@ -14,7 +14,7 @@ export const experience: ExperienceItem[] = [
     period: "Mar 2026 – Apr 2026",
     location: "Remote",
     description:
-      "Built full-stack web applications using the MERN stack. Worked on production features, API integration, and responsive UI development.",
+      "Delivered 3+ full-stack features using React.js, Node.js, Express.js, and MongoDB. Covered UI components, REST APIs, and database integration within a 2-month sprint cycle.",
     tags: ["MERN Stack", "Remote"],
   },
   {
@@ -22,8 +22,24 @@ export const experience: ExperienceItem[] = [
     organization: "Chandigarh University",
     period: "Jan 2025 – Present",
     description:
-      "Coordinating academic activities, liaising between students and faculty, and managing class communications for the CSE (AI/ML) batch.",
+      "Represented 60+ students across 3 consecutive semesters. Tracked issues, resolved conflicts, and liaised with faculty under competing deadlines.",
     tags: ["Leadership"],
+  },
+  {
+    role: "Member",
+    organization: "GFG Chapter, Chandigarh University",
+    period: "Apr 2025 – Feb 2026",
+    description:
+      "Contributed to peer learning and programming initiatives. Participated in problem-solving sessions as part of the campus body.",
+    tags: ["Community", "Problem Solving"],
+  },
+  {
+    role: "Member",
+    organization: "GDSC, Chandigarh University",
+    period: "Mar 2025 – Feb 2026",
+    description:
+      "Collaborated on developer community activities focusing on front-end development, C++, and project building.",
+    tags: ["Community", "Frontend"],
   },
   {
     role: "Co-author, IEEE Conference Paper",

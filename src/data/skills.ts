@@ -18,15 +18,15 @@ export const skills: SkillCategory[] = [
   },
   {
     category: "Data & ML",
-    items: ["Scikit-learn", "TensorFlow", "Pandas", "NLP"],
+    items: ["Scikit-learn", "TensorFlow", "Pandas", "NumPy", "NLP", "Prompt Engineering"],
   },
   {
     category: "Databases",
-    items: ["MongoDB", "MySQL", "SQLite"],
+    items: ["MongoDB", "MySQL", "SQLite", "BigQuery", "Cloud SQL"],
   },
   {
     category: "DevOps & Tools",
-    items: ["Git", "GitHub", "Docker", "GitHub Actions", "Linux", "Postman"],
+    items: ["Git", "GitHub", "Docker", "GitHub Actions", "Linux", "Postman", "GCP"],
   },
   {
     category: "Cloud & AI",
