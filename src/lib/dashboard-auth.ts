@@ -1,7 +1,14 @@
 import { createHash } from "crypto";
 
-export const DASHBOARD_USERNAME = process.env.DASHBOARD_USERNAME || "anuragshakalaya";
-export const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD || "anuraggaur001";
+export const DASHBOARD_USERNAME =
+  process.env.DASHBOARD_USERNAME ||
+  process.env.NEXT_PUBLIC_DASHBOARD_USERNAME ||
+  "anuragshakalaya";
+export const DASHBOARD_PASSWORD =
+  process.env.DASHBOARD_PASSWORD ||
+  process.env.NEXT_PUBLIC_DASHBOARD_PASSCODE ||
+  process.env.NEXT_PUBLIC_DASHBOARD_PASSWORD ||
+  "anuraggaur001";
 export const DASHBOARD_SESSION_COOKIE = "dashboard_session";
 
 const DASHBOARD_SESSION_SECRET = process.env.DASHBOARD_SESSION_SECRET || "anurag-dashboard-session";

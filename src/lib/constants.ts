@@ -28,4 +28,4 @@ export const NAV_LINKS = [
  * Sign up at https://formspree.io (free tier: 50 submissions/month).
  * Create a form and copy the form ID (e.g., "xabcdefg").
  */
-export const FORMSPREE_ID = "FORMSPREE_ID";
+export const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || "FORMSPREE_ID";
