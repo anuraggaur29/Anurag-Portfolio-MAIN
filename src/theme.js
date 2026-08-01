@@ -8,15 +8,15 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: 'var(--background)',
-      paper: 'var(--surface)',
+      default: '#09090b',
+      paper: '#111113',
     },
     primary: {
       main: '#d4a574',
     },
     text: {
-      primary: 'var(--foreground)',
-      secondary: 'var(--muted)',
+      primary: '#fafafa',
+      secondary: 'rgba(250, 250, 250, 0.7)',
     },
   },
   typography: {
@@ -53,8 +53,8 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: 'var(--background) !important',
-          color: 'var(--foreground) !important',
+          backgroundColor: 'var(--background)',
+          color: 'var(--foreground)',
           transition: 'background-color 0.3s ease, color 0.3s ease',
         },
       },
