@@ -449,89 +449,31 @@ function ResumeModal({ isOpen, onClose }) {
               </Box>
             </Box>
 
-            {/* Rendered Resume Document */}
-            <Box sx={{ flex: 1, overflow: 'auto', p: { xs: 2, sm: 4 }, display: 'flex', justifyContent: 'center' }}>
+            {/* Embedded Actual PDF Resume Document */}
+            <Box sx={{ flex: 1, overflow: 'auto', p: { xs: 1, sm: 2 }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div style={{
-                width: '100%', maxWidth: 700,
-                transform: `scale(${zoom / 100})`, transformOrigin: 'top center',
+                width: '100%',
+                height: '100%',
+                maxWidth: 800,
+                transform: `scale(${zoom / 100})`,
+                transformOrigin: 'top center',
                 transition: 'transform 0.2s ease',
-                background: 'var(--surface)', padding: '2.5rem', borderRadius: 16,
-                border: '1px solid var(--border-subtle)', boxShadow: '0 20px 40px var(--card-shadow)',
-                color: 'var(--foreground)'
+                borderRadius: 12,
+                overflow: 'hidden',
+                boxShadow: '0 20px 40px var(--card-shadow)',
+                border: '1px solid var(--border-subtle)',
+                background: '#fff'
               }}>
-                {/* Resume Header */}
-                <div style={{ textAlign: 'center', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '1.5rem', marginBottom: '1.5rem' }}>
-                  <h1 style={{ fontFamily: '"Playfair Display", serif', fontSize: '2.2rem', fontWeight: 700, margin: 0, color: 'var(--foreground)' }}>
-                    {personalInfo.name}
-                  </h1>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: '8px 0 0 0' }}>
-                    {personalInfo.phone} | {personalInfo.email} | {personalInfo.location}
-                  </p>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--accent)', margin: '4px 0 0 0' }}>
-                    github.com/anuraggaur29 | linkedin.com/in/anuraggaur29
-                  </p>
-                </div>
-
-                {/* Summary */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 8 }}>
-                    SUMMARY
-                  </h3>
-                  <p style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: 1.6, margin: 0 }}>
-                    {personalInfo.intro}
-                  </p>
-                </div>
-
-                {/* Experience */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>
-                    EXPERIENCE
-                  </h3>
-                  {experience.map(exp => (
-                    <div key={exp.id} style={{ marginBottom: 12 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                        <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>{exp.company} — <span style={{ fontWeight: 500, color: 'var(--accent)' }}>{exp.role}</span></span>
-                        <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>{exp.duration}</span>
-                      </div>
-                      <ul style={{ margin: '6px 0 0 16px', padding: 0, fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.6 }}>
-                        {exp.description.map((d, i) => (
-                          <li key={i}>{d}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Projects */}
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>
-                    PROJECTS
-                  </h3>
-                  {projects.map(p => (
-                    <div key={p.id} style={{ marginBottom: 12 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                        <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>{p.name} <span style={{ fontWeight: 400, fontSize: '0.8rem', color: 'var(--muted)' }}>| {p.tags.join(' · ')}</span></span>
-                        <span style={{ fontSize: '0.8rem', color: 'var(--accent)' }}>Live | Code</span>
-                      </div>
-                      <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: '4px 0 0 0', lineHeight: 1.5 }}>
-                        {p.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Education */}
-                <div>
-                  <h3 style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>
-                    EDUCATION
-                  </h3>
-                  {education.map(e => (
-                    <div key={e.id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.85rem' }}>
-                      <span><strong>{e.institution}</strong> — {e.degree} ({e.score})</span>
-                      <span style={{ color: 'var(--muted)' }}>{e.duration}</span>
-                    </div>
-                  ))}
-                </div>
+                <iframe
+                  src={`${personalInfo.resume}#toolbar=0&navpanes=0`}
+                  title={`${personalInfo.name} Resume`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    border: 'none',
+                    borderRadius: 12
+                  }}
+                />
               </div>
             </Box>
 
