@@ -8,7 +8,7 @@ import {
 import { Menu as MenuIcon, Close as CloseIcon, ArrowUpward as ArrowUpwardIcon } from '@mui/icons-material';
 import {
   personalInfo, navLinks, techStack, projects, experience, education,
-  certifications, achievements, socialLinks
+  achievements, socialLinks
 } from './data';
 
 function App() {
@@ -218,17 +218,18 @@ function App() {
                     <Button
                       variant="contained"
                       href={personalInfo.resume}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      download="ANURAG_Resume.pdf"
                       sx={{
-                        background: '#646cff',
-                        '&:hover': { background: '#535bf2' },
+                        background: 'linear-gradient(90deg, #646cff, #00d4aa)',
+                        '&:hover': { background: 'linear-gradient(90deg, #535bf2, #00a88a)', transform: 'translateY(-2px)' },
                         px: 4,
                         py: 1.5,
-                        borderRadius: '8px'
+                        borderRadius: '8px',
+                        fontWeight: 600,
+                        transition: 'all 0.3s ease'
                       }}
                     >
-                      View Resume
+                      📄 Download Resume
                     </Button>
                     <Button
                       variant="outlined"
@@ -402,11 +403,19 @@ function App() {
                         <Grid container spacing={3} alignItems="center">
                           <Grid item xs={12} md={6}>
                             <Typography variant="h3" sx={{ 
-                              mb: 1,
+                              mb: 0.5,
                               color: '#ffffff',
                               fontSize: '1.5rem'
                             }}>
                               {project.name}
+                            </Typography>
+                            <Typography variant="subtitle2" sx={{ 
+                              mb: 1.5,
+                              color: '#646cff',
+                              fontSize: '0.9rem',
+                              fontWeight: 500
+                            }}>
+                              {project.subtitle} — {project.year}
                             </Typography>
                             <Typography variant="body1" sx={{ 
                               mb: 2,
@@ -549,10 +558,15 @@ function App() {
                             <Typography variant="body1" sx={{ 
                               color: '#646cff',
                               fontSize: '1rem',
-                              mb: 1
+                              mb: 0.5
                             }}>
                               {exp.company}
                             </Typography>
+                            {exp.stack && (
+                              <Typography variant="body2" sx={{ color: '#b8b8b8', fontSize: '0.8rem', mb: 0.5 }}>
+                                {exp.stack} · {exp.type}
+                              </Typography>
+                            )}
                             <Typography variant="body2" sx={{ 
                               color: '#888',
                               fontSize: '0.875rem'
@@ -604,143 +618,119 @@ function App() {
               <Typography variant="h2" className="section-title">
                 Education
               </Typography>
-              <motion.div variants={fadeIn} initial="initial" animate="animate">
-                <Card sx={{
-                  background: '#1a1a2e',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
-                  maxWidth: '800px',
-                  margin: '0 auto'
-                }}>
-                  <CardContent sx={{ p: { xs: 2, md: 4 }, textAlign: 'center' }}>
-                    <Typography variant="h3" sx={{ 
-                      mb: 1,
-                      color: '#ffffff',
-                      fontSize: '1.75rem'
-                    }}>
-                      {education.institution}
-                    </Typography>
-                    <Typography variant="h4" sx={{ 
-                      mb: 2,
-                      color: '#646cff',
-                      fontSize: '1.25rem',
-                      fontWeight: 500
-                    }}>
-                      {education.degree}
-                    </Typography>
-                    <Typography variant="body1" sx={{ 
-                      mb: 1,
-                      color: '#b8b8b8'
-                    }}>
-                      CGPA: <strong>{education.cgpa}</strong>
-                    </Typography>
-                    <Typography variant="body1" sx={{ 
-                      mb: 2,
-                      color: '#b8b8b8'
-                    }}>
-                      {education.duration}
-                    </Typography>
-                    <Typography variant="body2" sx={{ 
-                      color: '#888'
-                    }}>
-                      {education.location}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-          </Container>
-        </section>
-
-        {/* Certifications Section */}
-        <section id="certifications">
-          <Container>
-            <motion.div initial="initial" animate="animate" variants={fadeInUp}>
-              <Typography variant="h2" className="section-title">
-                Certifications
-              </Typography>
               <motion.div variants={staggerContainer} initial="initial" animate="animate">
-                <Grid container spacing={3}>
-                  {certifications.map((cert, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={cert.id}>
-                      <motion.div variants={staggerItem}>
-                        <Card sx={{
-                          background: '#1a1a2e',
-                          border: '1px solid rgba(255, 255, 255, 0.05)',
-                          height: '100%'
+                {education.map((edu) => (
+                  <motion.div key={edu.id} variants={staggerItem}>
+                    <Card sx={{
+                      background: '#1a1a2e',
+                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      maxWidth: '800px',
+                      margin: '0 auto',
+                      mb: 3,
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        borderColor: 'rgba(100, 108, 255, 0.3)',
+                        boxShadow: '0 8px 30px rgba(100, 108, 255, 0.08)'
+                      }
+                    }}>
+                      <CardContent sx={{ p: { xs: 2, md: 4 }, textAlign: 'center' }}>
+                        <Typography variant="h3" sx={{ 
+                          mb: 1,
+                          color: '#ffffff',
+                          fontSize: '1.5rem'
                         }}>
-                          <CardContent sx={{ p: 2, height: '100%' }}>
-                            <Typography variant="h5" sx={{ 
-                              mb: 1,
-                              color: '#ffffff',
-                              fontSize: '1rem',
-                              fontWeight: 600
-                            }}>
-                              {cert.name}
-                            </Typography>
-                            <Typography variant="body2" sx={{ 
-                              mb: 1,
-                              color: '#646cff',
-                              fontSize: '0.875rem'
-                            }}>
-                              {cert.issuer}
-                            </Typography>
-                            <Typography variant="body2" sx={{ 
-                              color: '#888',
-                              fontSize: '0.875rem'
-                            }}>
-                              {cert.date}
-                            </Typography>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    </Grid>
-                  ))}
-                </Grid>
+                          {edu.institution}
+                        </Typography>
+                        <Typography variant="h4" sx={{ 
+                          mb: 1.5,
+                          color: '#646cff',
+                          fontSize: '1.1rem',
+                          fontWeight: 500
+                        }}>
+                          {edu.degree}
+                        </Typography>
+                        <Typography variant="body1" sx={{ mb: 0.5, color: '#b8b8b8' }}>
+                          <strong>{edu.score}</strong>
+                        </Typography>
+                        <Typography variant="body1" sx={{ mb: 0.5, color: '#b8b8b8' }}>
+                          {edu.duration}
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: '#888' }}>
+                          {edu.location}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
               </motion.div>
             </motion.div>
           </Container>
         </section>
 
-        {/* Achievements Section */}
+
+
+        {/* Achievements & Certifications Section */}
         <section id="achievements">
           <Container>
             <motion.div initial="initial" animate="animate" variants={fadeInUp}>
               <Typography variant="h2" className="section-title">
-                Achievements
+                Achievements & Certifications
               </Typography>
               <motion.div variants={staggerContainer} initial="initial" animate="animate">
                 <Grid container spacing={3}>
-                  {achievements.map((achievement, index) => (
+                  {achievements.map((achievement) => (
                     <Grid item xs={12} sm={6} md={4} key={achievement.id}>
                       <motion.div variants={staggerItem}>
                         <Card sx={{
                           background: '#1a1a2e',
                           border: '1px solid rgba(255, 255, 255, 0.05)',
-                          height: '100%'
+                          height: '100%',
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            borderColor: 'rgba(100, 108, 255, 0.3)',
+                            boxShadow: '0 8px 30px rgba(100, 108, 255, 0.08)',
+                            transform: 'translateY(-4px)'
+                          }
                         }}>
-                          <CardContent sx={{ p: 2, height: '100%' }}>
+                          <CardContent sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column', gap: 1 }}>
                             <Typography variant="h5" sx={{ 
-                              mb: 1,
                               color: '#ffffff',
-                              fontSize: '1.125rem',
-                              fontWeight: 600
+                              fontSize: '1.05rem',
+                              fontWeight: 600,
+                              lineHeight: 1.4
                             }}>
                               {achievement.title}
                             </Typography>
                             <Typography variant="body2" sx={{ 
-                              mb: 1,
                               color: '#b8b8b8',
                               fontSize: '0.875rem',
-                              lineHeight: 1.6
+                              lineHeight: 1.6,
+                              flexGrow: 1
                             }}>
                               {achievement.description}
                             </Typography>
-                            <Typography variant="body2" sx={{ 
-                              color: '#888',
-                              fontSize: '0.875rem'
-                            }}>
-                              {achievement.date}
-                            </Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 'auto' }}>
+                              <Typography variant="body2" sx={{ color: '#888', fontSize: '0.8rem' }}>
+                                {achievement.date}
+                              </Typography>
+                              {achievement.credentialUrl && (
+                                <Button
+                                  size="small"
+                                  href={achievement.credentialUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  sx={{
+                                    color: '#646cff',
+                                    fontSize: '0.75rem',
+                                    p: 0,
+                                    minWidth: 'auto',
+                                    '&:hover': { color: '#535bf2' }
+                                  }}
+                                >
+                                  View Credential →
+                                </Button>
+                              )}
+                            </Box>
                           </CardContent>
                         </Card>
                       </motion.div>
