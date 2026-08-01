@@ -1,22 +1,22 @@
 import { createTheme } from '@mui/material/styles';
 
 /**
- * Anurag's Portfolio Dark Theme
+ * Anurag's Portfolio Dynamic Theme Configuration
  * All credits to Anurag
  */
 const theme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#09090b',
-      paper: '#111113',
+      default: 'var(--background)',
+      paper: 'var(--surface)',
     },
     primary: {
       main: '#d4a574',
     },
     text: {
-      primary: '#fafafa',
-      secondary: 'rgba(250, 250, 250, 0.5)',
+      primary: 'var(--foreground)',
+      secondary: 'var(--muted)',
     },
   },
   typography: {
@@ -50,6 +50,15 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: 'var(--background) !important',
+          color: 'var(--foreground) !important',
+          transition: 'background-color 0.3s ease, color 0.3s ease',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -70,6 +79,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none',
+          backgroundColor: 'var(--surface)',
           borderRadius: '20px',
         },
       },
