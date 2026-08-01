@@ -374,12 +374,10 @@ function ResumeModal({ isOpen, onClose }) {
               <Box sx={{ mb: 3 }}>
                 <div style={{
                   width: 56, height: 56, borderRadius: 14,
-                  background: 'var(--accent-glow)', border: '1px solid var(--accent)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', fontWeight: 700,
-                  color: 'var(--accent)', marginBottom: 16
+                  overflow: 'hidden', border: '1px solid var(--accent)',
+                  marginBottom: 16
                 }}>
-                  A
+                  <img src="/avatar.png" alt={personalInfo.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <Typography sx={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--foreground)' }}>
                   {personalInfo.name}
@@ -592,9 +590,9 @@ function App() {
             <motion.div {...fadeUp}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
 
-                {/* Avatar Placeholder */}
+                {/* Avatar Image */}
                 <div className="avatar-placeholder">
-                  <span className="initials">A</span>
+                  <img src="/avatar.png" alt={personalInfo.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
 
                 <Box sx={{ maxWidth: 700, display: 'flex', flexDirection: 'column', gap: 2 }}>
