@@ -40,7 +40,7 @@ export const projects = [
     subtitle: "AI-Powered Exam Preparation Platform",
     description:
       "Full-stack exam prep platform with multi-tenant PostgreSQL schemas secured via Row-Level Security so each student/institution only sees their own data.",
-    liveUrl: "https://scolar.vercel.app",
+    liveUrl: "https://getscolar.vercel.app/",
     githubUrl: "https://github.com/anuraggaur29/ScolAR",
     year: "2026",
     tags: ["React 19", "FastAPI", "PostgreSQL", "Supabase", "Selenium", "Razorpay"],
@@ -57,7 +57,7 @@ export const projects = [
     subtitle: "Retail Inventory Analytics Platform",
     description:
       "Inventory analytics platform over 3,700+ products using CTEs, window functions (RANK, LAG), materialized views, and triggers to compute stock trends and reorder signals in real time.",
-    liveUrl: "https://stockpulse.vercel.app",
+    liveUrl: "https://retail-inventory-analytics-platform.vercel.app/",
     githubUrl: "https://github.com/anuraggaur29/StockPulse",
     year: "2026",
     tags: ["React", "FastAPI", "PostgreSQL", "Material UI", "JWT", "RBAC"],
@@ -74,7 +74,7 @@ export const projects = [
     subtitle: "AI-Powered Study Sheet Generator",
     description:
       "Pipeline converting uploaded video/audio/PDF lectures into structured study sheets via a provider-abstracted LLM layer — swap AI providers without touching calling code.",
-    liveUrl: "https://lecturecapture-ai.vercel.app",
+    liveUrl: "https://lecturecapture-ai.vercel.app/",
     githubUrl: "https://github.com/anuraggaur29/LectureCapture-AI",
     year: "2026",
     tags: ["React", "FastAPI", "Mistral AI", "Material UI", "Vercel"],
