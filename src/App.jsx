@@ -512,7 +512,7 @@ function ResumeModal({ isOpen, onClose }) {
 // MAIN APP
 // ═══════════════════════════════════════════════════════════════════════════
 function App() {
-  const [theme, setTheme] = useState(() => localStorage.getItem('portfolio_theme') || 'dark');
+  const [theme, setTheme] = useState('dark');
   const [activeSection, setActiveSection] = useState('hero');
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
