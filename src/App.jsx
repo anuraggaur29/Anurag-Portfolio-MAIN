@@ -1,71 +1,142 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Box, Container, Grid, Typography, Button, Card, CardContent, Link, IconButton
+  Box, Container, Grid, Typography, Button, IconButton
 } from '@mui/material';
 import {
-  personalInfo, navLinks, techStack, projects, experience, education,
+  personalInfo, techStack, projects, experience, education,
   achievements, socialLinks
 } from './data';
 
-// ─── Icon Components (inline SVGs for dock + social) ───────────────────────
+// ─── Inline SVG Icons ───────────────────────────────────────────────────────
 const HomeIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+    <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
   </svg>
 );
+
 const ProjectsIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z" />
   </svg>
 );
-const ExpIcon = () => (
+
+const TalkIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect width="20" height="14" x="2" y="7" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-  </svg>
-);
-const AwardIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-  </svg>
-);
-const MailIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-  </svg>
-);
-const FileIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8l6 6v12a2 2 0 0 1-2 2z" /><path d="M14 2v6h6" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" />
-  </svg>
-);
-const GithubIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-  </svg>
-);
-const LinkedInIcon = () => (
-  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-  </svg>
-);
-const ArrowUpRight = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M7 7h10v10" /><path d="M7 17 17 7" />
-  </svg>
-);
-const ArrowUpIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="m18 15-6-6-6 6"/>
-  </svg>
-);
-const ExternalLinkIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
   </svg>
 );
 
-// ─── Tech stack icon URLs (devicons CDN) ────────────────────────────────────
+const ResumeIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
+    <polyline points="10 9 9 9 8 9" />
+  </svg>
+);
+
+const SunIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1" x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
+
+const MenuIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
+const MailIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
+const TwitterIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const GithubIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+  </svg>
+);
+
+const LinkedInIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+  </svg>
+);
+
+const ArrowUpRight = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 7h10v10" />
+    <path d="M7 17 17 7" />
+  </svg>
+);
+
+const ArrowUpIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m18 15-6-6-6 6" />
+  </svg>
+);
+
+const ExternalLinkIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15 3 21 3 21 9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
+  </svg>
+);
+
+const ZoomInIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8" />
+    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    <line x1="11" y1="8" x2="11" y2="14" />
+    <line x1="8" y1="11" x2="14" y2="11" />
+  </svg>
+);
+
+const ZoomOutIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8" />
+    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    <line x1="8" y1="11" x2="14" y2="11" />
+  </svg>
+);
+
+// ─── Tech Icon Map ──────────────────────────────────────────────────────────
 const techIcons = {
   'C': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg',
   'C++': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg',
@@ -96,7 +167,7 @@ const techIcons = {
   'Vercel': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg',
 };
 
-// ─── Animation variants ─────────────────────────────────────────────────────
+// ─── Animation Variants ─────────────────────────────────────────────────────
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -117,43 +188,14 @@ const staggerChild = {
   transition: { duration: 0.5 }
 };
 
-// ─── Floating Dock ──────────────────────────────────────────────────────────
-function FloatingDock({ onNavigate }) {
-  const items = [
-    { icon: <HomeIcon />, label: 'Home', target: 'hero' },
-    { icon: <ProjectsIcon />, label: 'Projects', target: 'projects' },
-    { icon: <ExpIcon />, label: 'Experience', target: 'experience' },
-    { icon: <AwardIcon />, label: 'Achievements', target: 'achievements' },
-    { icon: <MailIcon />, label: 'Contact', target: 'contact' },
-  ];
-
-  return (
-    <div className="floating-dock">
-      <div className="dock-pill">
-        {items.map((item, i) => (
-          <div key={i} className="dock-item" onClick={() => onNavigate(item.target)} role="button" tabIndex={0} aria-label={item.label}>
-            <span className="tooltip">{item.label}</span>
-            {item.icon}
-          </div>
-        ))}
-        <div className="dock-separator" />
-        <a href={personalInfo.resume} download="ANURAG_Resume.pdf" className="dock-item" aria-label="Resume" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <span className="tooltip">Resume</span>
-          <FileIcon />
-        </a>
-      </div>
-    </div>
-  );
-}
-
-// ─── Laptop Mockup Component ────────────────────────────────────────────────
-function LaptopMockup({ projectName, accentColor = '#d4a574' }) {
+// ─── Laptop Mockup ──────────────────────────────────────────────────────────
+function LaptopMockup({ projectName, accentColor = 'var(--accent)' }) {
   return (
     <div style={{ position: 'relative', width: '100%', maxWidth: 460 }}>
       <div className="laptop-frame">
         <div style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', width: 4, height: 4, borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }} />
-        <div className="laptop-screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: `linear-gradient(135deg, #0a0a0f 0%, ${accentColor}10 50%, #0a0a0f 100%)` }}>
-          <Typography sx={{ color: accentColor, fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', fontWeight: 600, opacity: 0.7, textAlign: 'center', px: 3 }}>
+        <div className="laptop-screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: `linear-gradient(135deg, #0a0a0f 0%, ${accentColor}15 50%, #0a0a0f 100%)` }}>
+          <Typography sx={{ color: 'var(--accent)', fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', fontWeight: 600, opacity: 0.8, textAlign: 'center', px: 3 }}>
             {projectName}
           </Typography>
         </div>
@@ -165,21 +207,356 @@ function LaptopMockup({ projectName, accentColor = '#d4a574' }) {
   );
 }
 
-// ─── Social Icon Button ─────────────────────────────────────────────────────
+// ─── Social Button ──────────────────────────────────────────────────────────
 function SocialButton({ href, icon, label }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
       style={{
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         width: 44, height: 44, borderRadius: '50%',
-        border: '1px solid rgba(255,255,255,0.06)', background: 'var(--surface)',
+        border: '1px solid var(--border-subtle)', background: 'var(--surface)',
         color: 'var(--muted)', transition: 'all 0.2s ease', textDecoration: 'none',
       }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(212,165,116,0.4)'; e.currentTarget.style.color = 'var(--foreground)'; }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'var(--muted)'; }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--foreground)'; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-subtle)'; e.currentTarget.style.color = 'var(--muted)'; }}
     >
       {icon}
     </a>
+  );
+}
+
+// ─── Floating Dock Component ────────────────────────────────────────────────
+function FloatingDock({ activeSection, onNavigate, onOpenResume, theme, onToggleTheme }) {
+  const [socialOpen, setSocialOpen] = useState(false);
+
+  const items = [
+    { id: 'hero', icon: <HomeIcon />, label: 'Home' },
+    { id: 'projects', icon: <ProjectsIcon />, label: 'Projects' },
+    { id: 'contact', icon: <TalkIcon />, label: "Let's Talk" },
+  ];
+
+  return (
+    <div className="floating-dock">
+      {/* Social popup menu when hamburger is expanded */}
+      <AnimatePresence>
+        {socialOpen && (
+          <motion.div
+            className="social-popup-menu"
+            initial={{ opacity: 0, y: 15, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 15, scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+          >
+            <a href={socialLinks.email} target="_blank" rel="noopener noreferrer" className="social-popup-item" title="Email">
+              <MailIcon />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-popup-item" title="Twitter / X">
+              <TwitterIcon />
+            </a>
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="social-popup-item" title="LinkedIn">
+              <LinkedInIcon />
+            </a>
+            <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="social-popup-item" title="GitHub">
+              <GithubIcon />
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="dock-pill">
+        {/* Nav Items */}
+        {items.map(item => {
+          const isActive = activeSection === item.id;
+          return (
+            <button
+              key={item.id}
+              className={`dock-item ${isActive ? 'active' : ''}`}
+              onClick={() => onNavigate(item.id)}
+              aria-label={item.label}
+            >
+              <span className="tooltip">{item.label}</span>
+              {item.icon}
+              {isActive && <div className="dock-active-dot" />}
+            </button>
+          );
+        })}
+
+        <div className="dock-separator" />
+
+        {/* Resume Modal Trigger */}
+        <button
+          className="dock-item"
+          onClick={onOpenResume}
+          aria-label="Resume"
+        >
+          <span className="tooltip">Resume</span>
+          <ResumeIcon />
+        </button>
+
+        <div className="dock-separator" />
+
+        {/* Theme Toggle (Sun/Moon) */}
+        <button
+          className="dock-item"
+          onClick={onToggleTheme}
+          aria-label={theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+        >
+          <span className="tooltip">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+          {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        </button>
+
+        <div className="dock-separator" />
+
+        {/* Hamburger / Social Expand Toggle */}
+        <button
+          className="dock-item"
+          onClick={() => setSocialOpen(!socialOpen)}
+          aria-label="Social Links"
+        >
+          <span className="tooltip">Socials</span>
+          {socialOpen ? <CloseIcon /> : <MenuIcon />}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── Resume Modal Component ─────────────────────────────────────────────────
+function ResumeModal({ isOpen, onClose }) {
+  const [zoom, setZoom] = useState(100);
+
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="resume-modal-overlay"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      >
+        <motion.div
+          className="resume-modal-content"
+          initial={{ scale: 0.95, opacity: 0, y: 20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.95, opacity: 0, y: 20 }}
+          transition={{ duration: 0.25 }}
+          onClick={e => e.stopPropagation()}
+        >
+          {/* Sidebar */}
+          <Box sx={{
+            width: { xs: '100%', md: 280 },
+            borderRight: { md: '1px solid var(--border-subtle)' },
+            borderBottom: { xs: '1px solid var(--border-subtle)', md: 'none' },
+            p: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            justify: 'space-between',
+            background: 'var(--surface)',
+            flexShrink: 0
+          }}>
+            <Box>
+              {/* Header inside modal */}
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <ResumeIcon />
+                  <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                    RESUME
+                  </Typography>
+                </Box>
+                <IconButton size="small" onClick={onClose} sx={{ color: 'var(--muted)', display: { md: 'none' } }}>
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+
+              {/* User Avatar & Info */}
+              <Box sx={{ mb: 3 }}>
+                <div style={{
+                  width: 56, height: 56, borderRadius: 14,
+                  background: 'var(--accent-glow)', border: '1px solid var(--accent)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', fontWeight: 700,
+                  color: 'var(--accent)', marginBottom: 16
+                }}>
+                  A
+                </div>
+                <Typography sx={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--foreground)' }}>
+                  {personalInfo.name}
+                </Typography>
+                <Typography sx={{ fontSize: '0.85rem', color: 'var(--muted)', mb: 0.5 }}>
+                  {personalInfo.title}
+                </Typography>
+                <Typography sx={{ fontSize: '0.75rem', color: 'var(--muted)', opacity: 0.7 }}>
+                  📍 {personalInfo.location}
+                </Typography>
+              </Box>
+
+              {/* Navigation Action Pills */}
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
+                <Box sx={{
+                  p: 1.5, borderRadius: '12px', background: 'var(--accent-glow)',
+                  border: '1px solid var(--accent)', color: 'var(--accent)',
+                  fontWeight: 600, fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: 1
+                }}>
+                  <ResumeIcon /> Resume
+                </Box>
+
+                <a
+                  href={personalInfo.resume}
+                  download="ANURAG_Resume.pdf"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Box sx={{
+                    p: 1.5, borderRadius: '12px', background: 'transparent',
+                    border: '1px solid var(--border-subtle)', color: 'var(--foreground)',
+                    fontWeight: 600, fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: 1,
+                    transition: 'all 0.2s',
+                    '&:hover': { background: 'var(--surface-hover)', borderColor: 'var(--accent)' }
+                  }}>
+                    📥 Download PDF
+                  </Box>
+                </a>
+              </Box>
+            </Box>
+
+            {/* Last updated footer */}
+            <Box sx={{ pt: 2, borderTop: '1px solid var(--border-subtle)', mt: 'auto' }}>
+              <Typography sx={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                LAST UPDATED
+              </Typography>
+              <Typography sx={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--foreground)' }}>
+                Feb 2026
+              </Typography>
+            </Box>
+          </Box>
+
+          {/* Main Sheet Viewer Area */}
+          <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'var(--modal-bg)', overflow: 'hidden' }}>
+            {/* Top Bar */}
+            <Box sx={{ p: 2, px: 3, borderBottom: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Typography sx={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--muted)' }}>
+                {personalInfo.name} — Resume Sheet
+              </Typography>
+
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <a href={personalInfo.resume} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--muted)', display: 'flex', alignItems: 'center' }} title="Open in new tab">
+                  <ExternalLinkIcon />
+                </a>
+                <IconButton size="small" onClick={onClose} sx={{ color: 'var(--muted)' }}>
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+            </Box>
+
+            {/* Rendered Resume Document */}
+            <Box sx={{ flex: 1, overflow: 'auto', p: { xs: 2, sm: 4 }, display: 'flex', justifyContent: 'center' }}>
+              <div style={{
+                width: '100%', maxWidth: 700,
+                transform: `scale(${zoom / 100})`, transformOrigin: 'top center',
+                transition: 'transform 0.2s ease',
+                background: 'var(--surface)', padding: '2.5rem', borderRadius: 16,
+                border: '1px solid var(--border-subtle)', boxShadow: '0 20px 40px var(--card-shadow)',
+                color: 'var(--foreground)'
+              }}>
+                {/* Resume Header */}
+                <div style={{ textAlign: 'center', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '1.5rem', marginBottom: '1.5rem' }}>
+                  <h1 style={{ fontFamily: '"Playfair Display", serif', fontSize: '2.2rem', fontWeight: 700, margin: 0, color: 'var(--foreground)' }}>
+                    {personalInfo.name}
+                  </h1>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: '8px 0 0 0' }}>
+                    {personalInfo.phone} | {personalInfo.email} | {personalInfo.location}
+                  </p>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--accent)', margin: '4px 0 0 0' }}>
+                    github.com/anuraggaur29 | linkedin.com/in/anuraggaur29
+                  </p>
+                </div>
+
+                {/* Summary */}
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <h3 style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 8 }}>
+                    SUMMARY
+                  </h3>
+                  <p style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: 1.6, margin: 0 }}>
+                    {personalInfo.intro}
+                  </p>
+                </div>
+
+                {/* Experience */}
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <h3 style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>
+                    EXPERIENCE
+                  </h3>
+                  {experience.map(exp => (
+                    <div key={exp.id} style={{ marginBottom: 12 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>{exp.company} — <span style={{ fontWeight: 500, color: 'var(--accent)' }}>{exp.role}</span></span>
+                        <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>{exp.duration}</span>
+                      </div>
+                      <ul style={{ margin: '6px 0 0 16px', padding: 0, fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.6 }}>
+                        {exp.description.map((d, i) => (
+                          <li key={i}>{d}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Projects */}
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <h3 style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>
+                    PROJECTS
+                  </h3>
+                  {projects.map(p => (
+                    <div key={p.id} style={{ marginBottom: 12 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <span style={{ fontWeight: 700, fontSize: '0.9rem' }}>{p.name} <span style={{ fontWeight: 400, fontSize: '0.8rem', color: 'var(--muted)' }}>| {p.tags.join(' · ')}</span></span>
+                        <span style={{ fontSize: '0.8rem', color: 'var(--accent)' }}>Live | Code</span>
+                      </div>
+                      <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: '4px 0 0 0', lineHeight: 1.5 }}>
+                        {p.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Education */}
+                <div>
+                  <h3 style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>
+                    EDUCATION
+                  </h3>
+                  {education.map(e => (
+                    <div key={e.id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.85rem' }}>
+                      <span><strong>{e.institution}</strong> — {e.degree} ({e.score})</span>
+                      <span style={{ color: 'var(--muted)' }}>{e.duration}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Box>
+
+            {/* Bottom Controls */}
+            <Box sx={{ p: 1.5, px: 3, borderTop: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <IconButton size="small" onClick={() => setZoom(Math.max(70, zoom - 10))} sx={{ color: 'var(--muted)' }}>
+                  <ZoomOutIcon />
+                </IconButton>
+                <Typography sx={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--muted)', width: 45, textAlign: 'center' }}>
+                  {zoom}%
+                </Typography>
+                <IconButton size="small" onClick={() => setZoom(Math.min(130, zoom + 10))} sx={{ color: 'var(--muted)' }}>
+                  <ZoomInIcon />
+                </IconButton>
+              </Box>
+
+              <Typography sx={{ fontSize: '0.75rem', color: 'var(--muted)', fontStyle: 'italic' }}>
+                scroll to view full sheet
+              </Typography>
+            </Box>
+          </Box>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
@@ -187,16 +564,43 @@ function SocialButton({ href, icon, label }) {
 // MAIN APP
 // ═══════════════════════════════════════════════════════════════════════════
 function App() {
+  const [theme, setTheme] = useState(() => localStorage.getItem('portfolio_theme') || 'dark');
+  const [activeSection, setActiveSection] = useState('hero');
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeFilter, setActiveFilter] = useState('All');
 
   useEffect(() => {
-    const handleScroll = () => setShowBackToTop(window.scrollY > 400);
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+
+      const sections = ['hero', 'projects', 'contact'];
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 200 && rect.bottom >= 200) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollTo = (id) => {
+    setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -218,12 +622,24 @@ function App() {
   return (
     <Box sx={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
 
-      {/* Hatched side borders (desktop only) */}
+      {/* Hatched side borders */}
       <div className="hatched-border" style={{ left: 0 }}><div className="hatched-border-inner" /></div>
       <div className="hatched-border" style={{ right: 0 }}><div className="hatched-border-inner" /></div>
 
       {/* Floating Bottom Dock */}
-      <FloatingDock onNavigate={scrollTo} />
+      <FloatingDock
+        activeSection={activeSection}
+        onNavigate={scrollTo}
+        onOpenResume={() => setIsResumeOpen(true)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
+
+      {/* Interactive Resume Reader Modal */}
+      <ResumeModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
+      />
 
       {/* ════ MAIN CONTENT ════ */}
       <Box sx={{ position: 'relative', zIndex: 10, maxWidth: 1152, mx: 'auto', px: { xs: '20px', sm: '80px' } }}>
@@ -234,7 +650,7 @@ function App() {
             <motion.div {...fadeUp}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
 
-                {/* Avatar placeholder */}
+                {/* Avatar Placeholder */}
                 <div className="avatar-placeholder">
                   <span className="initials">A</span>
                 </div>
@@ -252,15 +668,14 @@ function App() {
                 {/* CTA Buttons */}
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 2, pt: 1 }}>
                   <Button
-                    href={personalInfo.resume}
-                    download="ANURAG_Resume.pdf"
-                    startIcon={<FileIcon />}
+                    onClick={() => setIsResumeOpen(true)}
+                    startIcon={<ResumeIcon />}
                     sx={{
                       minHeight: 44, px: 2.5, py: 1.2, borderRadius: '50px',
                       border: '1px solid var(--border-subtle)', background: 'var(--surface)',
                       color: 'var(--foreground)', fontWeight: 600, fontSize: '0.875rem',
                       textTransform: 'none',
-                      '&:hover': { background: 'var(--background)', borderColor: 'rgba(212,165,116,0.3)' }
+                      '&:hover': { background: 'var(--surface-hover)', borderColor: 'var(--accent)' }
                     }}
                   >
                     Resume / CV
@@ -300,8 +715,13 @@ function App() {
                     <motion.div key={tech.name} layout initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} transition={{ duration: 0.25 }}>
                       <div className="tech-pill">
                         {techIcons[tech.name] && (
-                          <img src={techIcons[tech.name]} alt={tech.name} width="16" height="16" loading="lazy"
-                            style={['GitHub', 'Next.js', 'Vercel', 'REST APIs'].includes(tech.name) ? { filter: 'invert(1)' } : undefined}
+                          <img
+                            src={techIcons[tech.name]}
+                            alt={tech.name}
+                            width="16"
+                            height="16"
+                            loading="lazy"
+                            style={theme === 'dark' && ['GitHub', 'Next.js', 'Vercel', 'REST APIs'].includes(tech.name) ? { filter: 'invert(1)' } : undefined}
                           />
                         )}
                         <span>{tech.name}</span>
@@ -321,7 +741,7 @@ function App() {
                   <p className="detail-label">Selected Work</p>
                   <h2 className="section-heading">Projects</h2>
                 </Box>
-                <p className="section-lead" style={{ textAlign: 'right' }}>Three production apps, live on real URLs.</p>
+                <p className="section-lead" style={{ textAlign: 'right' }}>Three production builds, live on real URLs.</p>
               </Box>
 
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
@@ -330,7 +750,7 @@ function App() {
                     <Box className="section-card" sx={{
                       borderRadius: '24px', p: { xs: 2.5, sm: 3 }, overflow: 'hidden',
                       transition: 'all 0.3s ease',
-                      '&:hover': { transform: 'translateY(-4px)', boxShadow: '0 20px 50px rgba(0,0,0,0.4)', borderColor: 'rgba(212,165,116,0.3)' }
+                      '&:hover': { transform: 'translateY(-4px)', boxShadow: '0 20px 50px var(--card-shadow)', borderColor: 'var(--accent)' }
                     }}>
                       <Grid container spacing={4} alignItems="center" direction={idx % 2 === 1 ? 'row-reverse' : 'row'}>
                         <Grid item xs={12} lg={6}>
@@ -354,7 +774,7 @@ function App() {
                                 <span key={tag} style={{
                                   padding: '4px 12px', borderRadius: 8, fontSize: '0.65rem', fontWeight: 700,
                                   textTransform: 'uppercase', letterSpacing: '0.08em',
-                                  border: '1px solid rgba(255,255,255,0.05)', background: 'rgba(255,255,255,0.02)',
+                                  border: '1px solid var(--border-subtle)', background: 'var(--surface-hover)',
                                   color: 'var(--muted)'
                                 }}>
                                   {tag}
@@ -364,7 +784,7 @@ function App() {
                             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2.5, pt: 1.5, alignItems: 'center' }}>
                               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" style={{
                                 display: 'inline-flex', alignItems: 'center', gap: 6, padding: '8px 16px',
-                                borderRadius: 12, border: '1px solid rgba(212,165,116,0.5)', color: 'var(--accent)',
+                                borderRadius: 12, border: '1px solid var(--accent)', color: 'var(--accent)',
                                 fontWeight: 600, fontSize: '0.85rem', textDecoration: 'none', transition: 'all 0.2s'
                               }}>
                                 Live Demo <ArrowUpRight />
@@ -410,7 +830,7 @@ function App() {
                               {exp.stack} · {exp.type}
                             </Typography>
                           )}
-                          <Typography sx={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.8rem' }}>
+                          <Typography sx={{ color: 'var(--muted)', opacity: 0.7, fontSize: '0.8rem' }}>
                             {exp.duration}
                           </Typography>
                         </Box>
@@ -418,7 +838,7 @@ function App() {
                         <Box sx={{ flex: 1 }}>
                           {exp.description.map((d, i) => (
                             <Box key={i} sx={{ display: 'flex', gap: 1.5, mb: 1.5 }}>
-                              <Box sx={{ width: 6, height: 6, borderRadius: '50%', bg: 'var(--accent)', mt: '8px', flexShrink: 0, background: 'var(--accent)', opacity: 0.5 }} />
+                              <Box sx={{ width: 6, height: 6, borderRadius: '50%', bg: 'var(--accent)', mt: '8px', flexShrink: 0, background: 'var(--accent)', opacity: 0.6 }} />
                               <Typography sx={{ color: 'var(--muted)', fontSize: '0.85rem', lineHeight: 1.7 }}>
                                 {d}
                               </Typography>
@@ -446,7 +866,7 @@ function App() {
                       <Box className="section-card" sx={{
                         borderRadius: '20px', p: { xs: 2.5, sm: 3.5 }, height: '100%', textAlign: 'center',
                         transition: 'all 0.3s',
-                        '&:hover': { borderColor: 'rgba(212,165,116,0.3)' }
+                        '&:hover': { borderColor: 'var(--accent)' }
                       }}>
                         <Typography sx={{ fontFamily: '"Playfair Display", serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--foreground)', mb: 1 }}>
                           {edu.institution}
@@ -460,7 +880,7 @@ function App() {
                         <Typography sx={{ color: 'var(--muted)', fontSize: '0.8rem', mb: 0.5 }}>
                           {edu.duration}
                         </Typography>
-                        <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem' }}>
+                        <Typography sx={{ color: 'var(--muted)', opacity: 0.7, fontSize: '0.75rem' }}>
                           {edu.location}
                         </Typography>
                       </Box>
@@ -485,7 +905,7 @@ function App() {
                         borderRadius: '20px', p: 3, height: '100%',
                         display: 'flex', flexDirection: 'column', gap: 1.5,
                         transition: 'all 0.3s',
-                        '&:hover': { transform: 'translateY(-4px)', borderColor: 'rgba(212,165,116,0.3)' }
+                        '&:hover': { transform: 'translateY(-4px)', borderColor: 'var(--accent)' }
                       }}>
                         <Typography sx={{ color: 'var(--foreground)', fontWeight: 700, fontSize: '0.95rem', lineHeight: 1.4 }}>
                           {a.title}
@@ -494,7 +914,7 @@ function App() {
                           {a.description}
                         </Typography>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 'auto' }}>
-                          <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem' }}>{a.date}</Typography>
+                          <Typography sx={{ color: 'var(--muted)', opacity: 0.7, fontSize: '0.75rem' }}>{a.date}</Typography>
                           {a.credentialUrl && (
                             <a href={a.credentialUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', fontSize: '0.75rem', fontWeight: 600, textDecoration: 'none' }}>
                               View Credential →
@@ -527,9 +947,9 @@ function App() {
                     startIcon={<MailIcon />}
                     sx={{
                       px: 3, py: 1.5, borderRadius: '50px',
-                      background: 'var(--accent)', color: '#0a0a0b',
+                      background: 'var(--accent)', color: 'var(--background)',
                       fontWeight: 700, textTransform: 'none',
-                      '&:hover': { background: 'rgba(212,165,116,0.85)' }
+                      '&:hover': { opacity: 0.9 }
                     }}
                   >
                     {personalInfo.email}
@@ -542,17 +962,16 @@ function App() {
 
                 <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid var(--border-subtle)' }}>
                   <Button
-                    href={personalInfo.resume}
-                    download="ANURAG_Resume.pdf"
-                    startIcon={<FileIcon />}
+                    onClick={() => setIsResumeOpen(true)}
+                    startIcon={<ResumeIcon />}
                     sx={{
                       px: 3, py: 1.2, borderRadius: '50px',
-                      border: '1px solid rgba(212,165,116,0.3)', color: 'var(--accent)',
+                      border: '1px solid var(--accent)', color: 'var(--accent)',
                       fontWeight: 600, textTransform: 'none', fontSize: '0.9rem',
-                      '&:hover': { background: 'rgba(212,165,116,0.08)', borderColor: 'rgba(212,165,116,0.5)' }
+                      '&:hover': { background: 'var(--accent-glow)' }
                     }}
                   >
-                    Download Resume
+                    View & Download Resume
                   </Button>
                 </Box>
               </Box>
@@ -562,17 +981,17 @@ function App() {
         </Box>
 
         {/* ───── FOOTER ───── */}
-        <Box sx={{ borderTop: '1px solid var(--border-subtle)', py: 4, textAlign: 'center' }}>
-          <Typography sx={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.8rem', mb: 0.5 }}>
-            © {new Date().getFullYear()} Anurag. All rights reserved.
+        <Box sx={{ borderTop: '1px solid var(--border-subtle)', py: 4, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: 'center', gap: 1 }}>
+          <Typography sx={{ color: 'var(--muted)', fontSize: '0.85rem' }}>
+            © {new Date().getFullYear()} Anurag
           </Typography>
-          <Typography sx={{ color: 'rgba(255,255,255,0.18)', fontSize: '0.75rem' }}>
-            Designed & Built by Anurag
+          <Typography sx={{ color: 'var(--muted)', fontSize: '0.85rem' }}>
+            Thanks for visiting my portfolio!
           </Typography>
         </Box>
       </Box>
 
-      {/* Back to top */}
+      {/* Back to top button */}
       <AnimatePresence>
         {showBackToTop && (
           <motion.button
@@ -582,7 +1001,7 @@ function App() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             style={{
               position: 'fixed', bottom: 80, right: 24, width: 44, height: 44,
-              borderRadius: '50%', border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '50%', border: '1px solid var(--border-subtle)',
               background: 'var(--surface)', color: 'var(--foreground)',
               cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
               zIndex: 40, transition: 'all 0.2s'
