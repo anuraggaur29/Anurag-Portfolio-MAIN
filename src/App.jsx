@@ -184,15 +184,31 @@ const staggerChild = {
 };
 
 // ─── Laptop Mockup ──────────────────────────────────────────────────────────
-function LaptopMockup({ projectName, accentColor = 'var(--accent)' }) {
+function LaptopMockup({ projectName, image, accentColor = 'var(--accent)' }) {
   return (
     <div style={{ position: 'relative', width: '100%', maxWidth: 460 }}>
       <div className="laptop-frame">
-        <div style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', width: 4, height: 4, borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }} />
-        <div className="laptop-screen" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: `linear-gradient(135deg, #0a0a0f 0%, ${accentColor}15 50%, #0a0a0f 100%)` }}>
-          <Typography sx={{ color: 'var(--accent)', fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', fontWeight: 600, opacity: 0.8, textAlign: 'center', px: 3 }}>
-            {projectName}
-          </Typography>
+        <div style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', width: 4, height: 4, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', zIndex: 10 }} />
+        <div className="laptop-screen">
+          {image ? (
+            <img
+              src={image}
+              alt={projectName}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'top',
+                display: 'block'
+              }}
+            />
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', background: `linear-gradient(135deg, #0a0a0f 0%, ${accentColor}15 50%, #0a0a0f 100%)` }}>
+              <Typography sx={{ color: 'var(--accent)', fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', fontWeight: 600, opacity: 0.8, textAlign: 'center', px: 3 }}>
+                {projectName}
+              </Typography>
+            </div>
+          )}
         </div>
       </div>
       <div className="laptop-base">
@@ -687,7 +703,7 @@ function App() {
                       <Grid container spacing={4} alignItems="center" direction={idx % 2 === 1 ? 'row-reverse' : 'row'}>
                         <Grid item xs={12} lg={6}>
                           <Box sx={{ display: 'flex', justifyContent: 'center', py: { xs: 2, lg: 3 } }}>
-                            <LaptopMockup projectName={project.name} />
+                            <LaptopMockup projectName={project.name} image={project.image} />
                           </Box>
                         </Grid>
                         <Grid item xs={12} lg={6}>

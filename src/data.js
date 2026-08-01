@@ -38,6 +38,7 @@ export const projects = [
     id: 1,
     name: "ScolAR",
     subtitle: "AI-Powered Exam Preparation Platform",
+    image: "/projects/scolar.png",
     description:
       "Full-stack exam prep platform with multi-tenant PostgreSQL schemas secured via Row-Level Security so each student/institution only sees their own data.",
     liveUrl: "https://getscolar.vercel.app/",
@@ -55,6 +56,7 @@ export const projects = [
     id: 2,
     name: "StockPulse",
     subtitle: "Retail Inventory Analytics Platform",
+    image: "/projects/stockpulse.png",
     description:
       "Inventory analytics platform over 3,700+ products using CTEs, window functions (RANK, LAG), materialized views, and triggers to compute stock trends and reorder signals in real time.",
     liveUrl: "https://retail-inventory-analytics-platform.vercel.app/",
@@ -72,6 +74,7 @@ export const projects = [
     id: 3,
     name: "LectureCapture AI",
     subtitle: "AI-Powered Study Sheet Generator",
+    image: "/projects/lecturecapture.png",
     description:
       "Pipeline converting uploaded video/audio/PDF lectures into structured study sheets via a provider-abstracted LLM layer — swap AI providers without touching calling code.",
     liveUrl: "https://lecturecapture-ai.vercel.app/",
