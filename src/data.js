@@ -58,7 +58,7 @@ export const projects = [
     description:
       "Inventory analytics platform over 3,700+ products using CTEs, window functions (RANK, LAG), materialized views, and triggers to compute stock trends and reorder signals in real time.",
     liveUrl: "https://retail-inventory-analytics-platform.vercel.app/",
-    githubUrl: "https://github.com/anuraggaur29/StockPulse",
+    githubUrl: "https://github.com/anuraggaur29/Retail-Inventory-Analytics-Platform",
     year: "2026",
     tags: ["React", "FastAPI", "PostgreSQL", "Material UI", "JWT", "RBAC"],
     highlights: [
@@ -75,7 +75,7 @@ export const projects = [
     description:
       "Pipeline converting uploaded video/audio/PDF lectures into structured study sheets via a provider-abstracted LLM layer — swap AI providers without touching calling code.",
     liveUrl: "https://lecturecapture-ai.vercel.app/",
-    githubUrl: "https://github.com/anuraggaur29/LectureCapture-AI",
+    githubUrl: "https://github.com/anuraggaur29/LectureCapture.ai",
     year: "2026",
     tags: ["React", "FastAPI", "Mistral AI", "Material UI", "Vercel"],
     highlights: [
