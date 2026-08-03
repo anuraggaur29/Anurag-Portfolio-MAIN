@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 export default function FounderTerminal({ theme = 'dark' }) {
   const [logs, setLogs] = useState([
     { id: 1, type: 'info', text: "Anurag's Personal AI Terminal [v2.0.0]" },
-    { id: 2, type: 'info', text: "Personal AI Assistant to Anurag Shakalya (Full-Stack Developer & Founder of ScolAR)" },
+    { id: 2, type: 'info', text: "Personal AI Assistant to Anurag (Full-Stack Developer & Founder of ScolAR)" },
     { id: 3, type: 'system', text: "Ask anything about Anurag or click quick options below:" },
   ]);
   const [inputVal, setInputVal] = useState('');
@@ -44,7 +44,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Hey! I am Anurag Shakalya's Personal AI Assistant. I can tell you all about Anurag's background, full-stack developer skills, production projects (ScolAR, StockPulse, LectureCapture AI), education, and contact details! Ask me anything about Anurag.`,
+          text: `Hey! I am Anurag's Personal AI Assistant. I can tell you all about Anurag's background, full-stack developer skills, production projects (ScolAR, StockPulse, LectureCapture AI), education, and contact details! Ask me anything about Anurag.`,
         },
       ]);
       setLoading(false);
@@ -65,7 +65,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `I am Anurag Shakalya's Personal AI Assistant! My purpose is to assist visitors by sharing details about Anurag's technical stack, full-stack software projects, work experience, education at Chandigarh University, and contact details.`,
+          text: `I am Anurag's Personal AI Assistant! My purpose is to assist visitors by sharing details about Anurag's technical stack, full-stack software projects, work experience, education at Chandigarh University, and contact details.`,
         },
       ]);
       setLoading(false);
@@ -79,7 +79,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Email: anuragshakalya@gmail.com\nFeel free to reach out via email for SDE / Full-Stack software engineering roles!`,
+          text: `Anurag's Email: anuragshakalya@gmail.com\nFeel free to reach out via email for SDE / Full-Stack software engineering roles!`,
         },
       ]);
       setLoading(false);
@@ -93,7 +93,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Phone / WhatsApp: +91 7988019566`,
+          text: `Anurag's Phone / WhatsApp: +91 7988019566`,
         },
       ]);
       setLoading(false);
@@ -107,7 +107,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's LinkedIn Profile:\nhttps://linkedin.com/in/anuraggaur29`,
+          text: `Anurag's LinkedIn Profile:\nhttps://linkedin.com/in/anuraggaur29`,
         },
       ]);
       setLoading(false);
@@ -120,7 +120,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's GitHub Profile:\nhttps://github.com/anuraggaur29`,
+          text: `Anurag's GitHub Profile:\nhttps://github.com/anuraggaur29`,
         },
       ]);
       setLoading(false);
@@ -134,7 +134,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Location: Chandigarh, India`,
+          text: `Anurag's Location: Chandigarh, India`,
         },
       ]);
       setLoading(false);
@@ -148,7 +148,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Academic CGPA: 8.16\nDegree: B.E. Computer Science Engineering (AI & ML Specialization) @ Chandigarh University`,
+          text: `Anurag's Academic CGPA: 8.16\nDegree: B.E. Computer Science Engineering (AI & ML Specialization) @ Chandigarh University`,
         },
       ]);
       setLoading(false);
@@ -162,7 +162,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Work Experience:\nFull Stack Web Development Intern at Webstack Academy (MERN Stack, Remote | Mar 2026 – Apr 2026)\n• Built & shipped REST APIs consumed by React frontend.\n• Fixed data-consistency bugs caused by mismatched frontend/backend schema assumptions.`,
+          text: `Anurag's Work Experience:\nFull Stack Web Development Intern at Webstack Academy (MERN Stack, Remote | Mar 2026 – Apr 2026)\n• Built & shipped REST APIs consumed by React frontend.\n• Fixed data-consistency bugs caused by mismatched frontend/backend schema assumptions.`,
         },
       ]);
       setLoading(false);
@@ -176,7 +176,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya — Full-Stack Developer & Founder of ScolAR\nFull-stack software developer who has shipped 3 production web apps live on real URLs (React / FastAPI / PostgreSQL / Supabase). Comfortable owning features end-to-end: schema design, REST APIs, RLS/auth, and cloud deployment.`,
+          text: `Anurag — Full-Stack Developer & Founder of ScolAR\nFull-stack software developer who has shipped 3 production web apps live on real URLs (React / FastAPI / PostgreSQL / Supabase). Comfortable owning features end-to-end: schema design, REST APIs, RLS/auth, and cloud deployment.`,
         },
       ]);
       setLoading(false);
@@ -189,7 +189,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Technical Stack:\n• Languages: C, C++, Python, JavaScript, TypeScript, SQL\n• Frontend: React, Next.js, Tailwind CSS, Material UI\n• Backend: FastAPI, Node.js, REST APIs, JWT Auth\n• Databases: PostgreSQL, Supabase, MongoDB (schema design, RLS)\n• Tools & DevOps: Git, GitHub, Postman, Docker, Linux, Selenium, Vercel`,
+          text: `Anurag's Technical Stack:\n• Languages: C, C++, Python, JavaScript, TypeScript, SQL\n• Frontend: React, Next.js, Tailwind CSS, Material UI\n• Backend: FastAPI, Node.js, REST APIs, JWT Auth\n• Databases: PostgreSQL, Supabase, MongoDB (schema design, RLS)\n• Tools & DevOps: Git, GitHub, Postman, Docker, Linux, Selenium, Vercel`,
         },
       ]);
       setLoading(false);
@@ -202,7 +202,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Featured Production Projects:\n1. ScolAR — AI-Powered Exam Prep & Student OS Platform (React 19, FastAPI, PostgreSQL, Supabase). Multi-tenant RLS schemas & Selenium CUIMS data sync.\n2. StockPulse — Retail Inventory Analytics Platform (React, FastAPI, PostgreSQL, MUI). CTEs & window functions over 3,700+ products with JWT RBAC.\n3. LectureCapture AI — AI Study Sheet Generator (React, FastAPI, Mistral AI, MUI). Converts video/audio/PDF lectures into structured study sheets.`,
+          text: `Anurag's Featured Production Projects:\n1. ScolAR — AI-Powered Exam Prep & Student OS Platform (React 19, FastAPI, PostgreSQL, Supabase). Multi-tenant RLS schemas & Selenium CUIMS data sync.\n2. StockPulse — Retail Inventory Analytics Platform (React, FastAPI, PostgreSQL, MUI). CTEs & window functions over 3,700+ products with JWT RBAC.\n3. LectureCapture AI — AI Study Sheet Generator (React, FastAPI, Mistral AI, MUI). Converts video/audio/PDF lectures into structured study sheets.`,
         },
       ]);
       setLoading(false);
@@ -215,7 +215,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Academic Credentials:\n• B.E. Computer Science Engineering (AI & ML Specialization)\n  Chandigarh University (Mohali, Punjab) | CGPA: 8.16 (Aug 2023 - Jan 2027)\n• Class XII — 84%\n  Hari Bhoomi Sr. Sec. School (Jind, Haryana) (2023)\n• Certifications: Microsoft Azure AI Fundamentals (AI-900)\n• Leadership: Class Representative for 70+ students (1.5+ yrs), Graph-E-Thon 3.0 National Top 50 Finalist`,
+          text: `Anurag's Academic Credentials:\n• B.E. Computer Science Engineering (AI & ML Specialization)\n  Chandigarh University (Mohali, Punjab) | CGPA: 8.16 (Aug 2023 - Jan 2027)\n• Class XII — 84%\n  Hari Bhoomi Sr. Sec. School (Jind, Haryana) (2023)\n• Certifications: Microsoft Azure AI Fundamentals (AI-900)\n• Leadership: Class Representative for 70+ students (1.5+ yrs), Graph-E-Thon 3.0 National Top 50 Finalist`,
         },
       ]);
       setLoading(false);
@@ -228,7 +228,7 @@ export default function FounderTerminal({ theme = 'dark' }) {
         {
           id: Date.now() + 1,
           type: 'assistant',
-          text: `Anurag Shakalya's Contact & Links:\n• Location: Chandigarh, India\n• Phone: +91 7988019566\n• Email: anuragshakalya@gmail.com\n• Portfolio: anuraggaur29.netlify.app\n• LinkedIn: linkedin.com/in/anuraggaur29\n• GitHub: github.com/anuraggaur29`,
+          text: `Anurag's Contact & Links:\n• Location: Chandigarh, India\n• Phone: +91 7988019566\n• Email: anuragshakalya@gmail.com\n• Portfolio: anuraggaur29.netlify.app\n• LinkedIn: linkedin.com/in/anuraggaur29\n• GitHub: github.com/anuraggaur29`,
         },
       ]);
       setLoading(false);
@@ -236,11 +236,11 @@ export default function FounderTerminal({ theme = 'dark' }) {
     }
 
     try {
-      const systemPrompt = `You are Anurag Shakalya's Personal AI Assistant.
-YOUR SOLE PURPOSE IS TO BE ANURAG SHAKALYA'S PERSONAL PORTFOLIO ASSISTANT. YOU ARE NOT SCOLAR STUDY HELP BOT OR EXAM SENIOR.
+      const systemPrompt = `You are Anurag's Personal AI Assistant.
+YOUR SOLE PURPOSE IS TO BE ANURAG'S PERSONAL PORTFOLIO ASSISTANT. YOU ARE NOT SCOLAR STUDY HELP BOT OR EXAM SENIOR.
 
-Official Resume Knowledge Base of Anurag Shakalya:
-- Full Name: Anurag Shakalya
+Official Resume Knowledge Base of Anurag:
+- Official Full Name: Anurag (Listed on all official records as "Anurag" only)
 - Title: Full-Stack Software Developer | Founder & CEO of ScolAR
 - Location: Chandigarh, India | Phone: +91 7988019566 | Email: anuragshakalya@gmail.com | LinkedIn: linkedin.com/in/anuraggaur29 | GitHub: github.com/anuraggaur29 | Portfolio: anuraggaur29.netlify.app
 - Professional Summary: Full-stack developer who shipped 3 production web apps live on real URLs (React, FastAPI, PostgreSQL, Supabase).
@@ -251,9 +251,9 @@ Official Resume Knowledge Base of Anurag Shakalya:
 - Leadership & Certifications: Graph-E-Thon 3.0 National Top 50 Finalist, Class Representative for 70+ students (1.5+ yrs), Azure AI Fundamentals (AI-900).
 
 IDENTITY & SCOPE RULES:
-1. ALWAYS identify as "Anurag Shakalya's Personal AI Assistant".
-2. Describe EVERYTHING around Anurag Shakalya only. Never claim to be a study bot or CU exam senior.
-3. If asked questions unrelated to Anurag, state: "I am Anurag Shakalya's Personal AI Assistant. Ask me about Anurag's skills, projects, background, or contact details!"
+1. ALWAYS identify as "Anurag's Personal AI Assistant". Mention his complete official name as "Anurag" only.
+2. Describe EVERYTHING around Anurag only. Never claim to be a study bot or CU exam senior.
+3. If asked questions unrelated to Anurag, state: "I am Anurag's Personal AI Assistant. Ask me about Anurag's skills, projects, background, or contact details!"
 4. DO NOT output markdown asterisks (** or *) or header hashes (#). Keep output in crisp, clean plain text.
 5. DEFAULT LANGUAGE: Always speak in clean, professional English by default. Adapt to another language only if the user explicitly writes to you in another language.`;
 
@@ -282,19 +282,19 @@ IDENTITY & SCOPE RULES:
       setLogs((prev) => [...prev, { id: Date.now() + 1, type: 'assistant', text: reply }]);
     } catch (err) {
       // Production live fallback answering exact query cleanly if backend endpoint unavailable
-      let smartFallback = `Anurag Shakalya — Full-Stack Developer & Founder of ScolAR\nLocation: Chandigarh, India | Email: anuragshakalya@gmail.com | Phone: +91 7988019566`;
+      let smartFallback = `Anurag — Full-Stack Developer & Founder of ScolAR\nLocation: Chandigarh, India | Email: anuragshakalya@gmail.com | Phone: +91 7988019566`;
       if (lower.includes('email') || lower.includes('mail')) {
-        smartFallback = `Anurag Shakalya's Email: anuragshakalya@gmail.com\nFeel free to reach out via email for SDE / Full-Stack software engineering roles!`;
+        smartFallback = `Anurag's Email: anuragshakalya@gmail.com\nFeel free to reach out via email for SDE / Full-Stack software engineering roles!`;
       } else if (lower.includes('phone') || lower.includes('number') || lower.includes('call') || lower.includes('whatsapp') || lower.includes('mobile')) {
-        smartFallback = `Anurag Shakalya's Phone / WhatsApp: +91 7988019566`;
+        smartFallback = `Anurag's Phone / WhatsApp: +91 7988019566`;
       } else if (lower.includes('skill') || lower.includes('stack') || lower.includes('tech')) {
-        smartFallback = `Anurag Shakalya's Technical Stack:\n• Languages: C, C++, Python, JavaScript, TypeScript, SQL\n• Frontend: React, Next.js, Tailwind CSS, Material UI\n• Backend: FastAPI, Node.js, REST APIs, JWT Auth\n• Databases: PostgreSQL, Supabase, MongoDB (schema design, RLS)\n• DevOps & Tools: Git, GitHub, Docker, Linux, Selenium, Vercel`;
+        smartFallback = `Anurag's Technical Stack:\n• Languages: C, C++, Python, JavaScript, TypeScript, SQL\n• Frontend: React, Next.js, Tailwind CSS, Material UI\n• Backend: FastAPI, Node.js, REST APIs, JWT Auth\n• Databases: PostgreSQL, Supabase, MongoDB (schema design, RLS)\n• DevOps & Tools: Git, GitHub, Docker, Linux, Selenium, Vercel`;
       } else if (lower.includes('project') || lower.includes('app') || lower.includes('work')) {
-        smartFallback = `Anurag Shakalya's Featured Production Projects:\n1. ScolAR — AI Exam Prep & Student OS Platform (React 19, FastAPI, PostgreSQL, Supabase).\n2. StockPulse — Retail Inventory Analytics Platform (React, FastAPI, PostgreSQL, MUI).\n3. LectureCapture AI — AI Study Sheet Generator (React, FastAPI, Mistral AI, MUI).`;
+        smartFallback = `Anurag's Featured Production Projects:\n1. ScolAR — AI Exam Prep & Student OS Platform (React 19, FastAPI, PostgreSQL, Supabase).\n2. StockPulse — Retail Inventory Analytics Platform (React, FastAPI, PostgreSQL, MUI).\n3. LectureCapture AI — AI Study Sheet Generator (React, FastAPI, Mistral AI, MUI).`;
       } else if (lower.includes('education') || lower.includes('degree') || lower.includes('college') || lower.includes('university') || lower.includes('cgpa')) {
-        smartFallback = `Anurag Shakalya's Academic Credentials:\n• B.E. Computer Science Engineering (AI & ML Specialization) | CGPA: 8.16\n  Chandigarh University (Mohali, Punjab) (Aug 2023 - Jan 2027)\n• Class XII — 84% | Hari Bhoomi Sr. Sec. School (Jind, Haryana) (2023)`;
+        smartFallback = `Anurag's Academic Credentials:\n• B.E. Computer Science Engineering (AI & ML Specialization) | CGPA: 8.16\n  Chandigarh University (Mohali, Punjab) (Aug 2023 - Jan 2027)\n• Class XII — 84% | Hari Bhoomi Sr. Sec. School (Jind, Haryana) (2023)`;
       } else if (lower.includes('contact') || lower.includes('reach') || lower.includes('link')) {
-        smartFallback = `Anurag Shakalya's Contact & Social Links:\n• Email: anuragshakalya@gmail.com\n• Phone: +91 7988019566\n• Portfolio: anuraggaur29.netlify.app\n• LinkedIn: linkedin.com/in/anuraggaur29\n• GitHub: github.com/anuraggaur29`;
+        smartFallback = `Anurag's Contact & Social Links:\n• Email: anuragshakalya@gmail.com\n• Phone: +91 7988019566\n• Portfolio: anuraggaur29.netlify.app\n• LinkedIn: linkedin.com/in/anuraggaur29\n• GitHub: github.com/anuraggaur29`;
       }
       setLogs((prev) => [
         ...prev,
