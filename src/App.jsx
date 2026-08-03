@@ -7,6 +7,7 @@ import {
   personalInfo, techStack, projects, experience, education,
   achievements, socialLinks
 } from './data';
+import FounderTerminal from './components/FounderTerminal';
 
 // ─── Inline SVG Icons ───────────────────────────────────────────────────────
 const HomeIcon = () => (
@@ -519,6 +520,13 @@ function App() {
   const [activeFilter, setActiveFilter] = useState('All');
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('portfolio_theme', theme);
   }, [theme]);
@@ -634,6 +642,11 @@ function App() {
                     <SocialButton href={socialLinks.linkedin} icon={<LinkedInIcon />} label="LinkedIn" />
                     <SocialButton href={socialLinks.email} icon={<MailIcon />} label="Email" />
                   </Box>
+                </Box>
+
+                {/* Main Hero Showcase: Enlarged Founder AI Terminal Widget */}
+                <Box sx={{ width: '100%', pt: 2 }}>
+                  <FounderTerminal theme={theme} />
                 </Box>
               </Box>
             </motion.div>
